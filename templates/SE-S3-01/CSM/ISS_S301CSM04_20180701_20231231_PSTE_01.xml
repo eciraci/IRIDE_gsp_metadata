@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--IRIDE Service Segment (ISS) - Lot2 - Metadata -->
 <!--Active Areas Deformation for S3-01-CSM-04-->
- <REGION>
+<GSP>
     <!--Geospatial Product ID from TD3-->
     <gsp_id>S3-01-CSM-04</gsp_id>
     <!--Product - File Name-->
@@ -12,9 +12,9 @@
     <sensor_id>CSM</sensor_id>
     <!--Data Provider: (eGeos, Planetek, TREA, Nhazka)-->
     <provider>eGeos</provider>
-    <!--Production Date-->
+    <!--Production Date yyyymmdd-->
     <production_date>20180101</production_date>
-    <!--Reference Period Start and End Date-->
+    <!--Reference Period Start and End Date yyyymmdd-->
     <start_date>20180701</start_date>
     <end_date>20231231</end_date>
 
@@ -51,6 +51,8 @@
             <!--ExxNxx : CSM 2D Deformation Grid Upper-Left Corner -->
             <product_id>ISS_S301CSM03_20180701_20231231_E437N220V_01</product_id>
         </gsp>
+
+        <!---Other Input Products Used to Generate the GSP-->
         ...
     </dataset>
- </REGION>
+</GSP>

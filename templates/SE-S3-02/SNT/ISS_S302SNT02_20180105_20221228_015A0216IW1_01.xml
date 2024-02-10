@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--IRIDE Service Segment (ISS) - Lot2 - Metadata-->
+<!--BURST: distribution unit for S3-02-SNT-02-->
+<BURST>
+    <!--Geospatial Product ID from TD3-->
+    <gsp_id>S3-02-SNT-02</gsp_id>
+    <!--Product - File Name-->
+    <product_id>ISS_S302SNT02_20180105_20221228_015A0216IW1_01</product_id>
+    <!--Product Name - Description-->
+    <description>"LOS velocities projected along the maximum slope direction"</description>
+    <!--Satellite [CSM, SNT, SAO]-->
+    <sensor_id>SNT</sensor_id>
+    <!--Sentinel track and burst identifier-->
+    <burst_id>015A0216IW1</burst_id>
+    <!--Track Number-->
+    <track>015</track>
+    <!--Burst Number-->
+    <burst>0216</burst>
+    <!--Swath-->
+    <swath>IW1</swath>
+    <!--Polarization-->
+    <polarization>VV</polarization>
+    <!--Orbit Direction A/D-->
+    <direction>A</direction>
+    <!--Data Provider: (eGeos, Planetek, TREA, Nhazka)-->
+    <provider>TREA</provider>
+    <!--Production Date yyyymmdd-->
+    <production_date>20240111</production_date>
+    <!--Reference Period Start and End Date yyyymmdd-->
+    <start_date>20180105</start_date>
+    <end_date>20221228</end_date>
+
+    <!--Burst perimeter - corners coordinates are in EPSG:4326-->
+    <geometry>POLYGON ((33.098005535200876 35.11517612263039,
+        33.05369474340623 35.30003518486628, 34.04812645097012 35.45191481283175,
+        34.08879409662925 35.26688112117148, 33.098005535200876 35.11517612263039))
+    </geometry>
+    <!--Coordinate Reference System-->
+    <crs>EPSG:4326</crs>
+
+    <!--Sequence Input Products Used to Generate the GSP-->
+    <dataset>
+        <!--Input ISS Geospatial Products-->
+        <gsp>
+            <!--Geospatial Product ID from TD3-->
+            <gsp_id>S3-01-SNT-01</gsp_id>
+            <product_id>ISS_S301SNT01_20180101_20231231_015A0216IW1_01</product_id>
+        </gsp>
+
+        <!--Input NEO Datasets-->
+        <input>
+            <!--Input ID from TD3-->
+            <input_id>S3-NEO-I01</input_id>
+            <version>Tinitaly-10</version>
+            <!--Dataset Description-->
+            <description>"Tarquini S., I. Isola, M. Favalli, A. Battistini,
+                G. Dotta (2023). TINITALY, a digital elevation model of Italy with
+                a 10 meters cell size (Version 1.1). Istituto Nazionale di Geofisica
+                e Vulcanologia (INGV). https://doi.org/10.13127/tinitaly/1.1."
+            </description>
+        </input>
+
+        <!--Other Input Products Used to Generate the GSP-->
+         ...
+
+    </dataset>
+</BURST>

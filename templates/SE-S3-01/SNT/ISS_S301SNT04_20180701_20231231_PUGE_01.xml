@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--IRIDE Service Segment (ISS) - Lot2 - Metadata -->
 <!--Active Areas Deformation for S3-01-SNT-04-->
- <REGION>
+<GSP>
     <!--Geospatial Product ID from TD3-->
     <gsp_id>S3-01-SNT-04</gsp_id>
     <!--Product - File Name-->
@@ -12,13 +12,13 @@
     <sensor_id>SNT</sensor_id>
     <!--Data Provider: (eGeos, Planetek, TREA, Nhazka)-->
     <provider>eGeos</provider>
-    <!--Production Date-->
+    <!--Production Date yyyymmdd-->
     <production_date>20180101</production_date>
-    <!--Reference Period Start and End Date-->
+    <!--Reference Period Start and End Date yyyymmdd-->
     <start_date>20180701</start_date>
     <end_date>20231231</end_date>
 
-    <!--Ara of Interest-->
+    <!--IRIDE Area of Interest (PUG = Puglia)-->
     <aoi>PUG</aoi>
     <!--Bounding Box-->
     <bbox>14.93, 39.78, 18.52,42.22</bbox>
@@ -51,4 +51,4 @@
     </dataset>
 
 
- </REGION>
+</GSP>

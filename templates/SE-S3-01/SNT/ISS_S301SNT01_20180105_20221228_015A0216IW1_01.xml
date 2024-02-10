@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--IRIDE Service Segment (ISS) - Lot2 - Metadata-->
-<!--BURST: distribution unit for S3-01-SNT-01 & S3-01-SNT-03-->
+<!--BURST: distribution unit for S3-01-SNT-01 & S3-01-SNT-02-->
 <BURST>
   <!--Geospatial Product ID from TD3-->
   <gsp_id>S3-01-SNT-01</gsp_id>
@@ -24,17 +24,17 @@
   <direction>A</direction>
   <!--Data Provider: (eGeos, Planetek, TREA, Nhazka)-->
   <provider>eGeos</provider>
-  <!--Production Date-->
+  <!--Production Date yyyymmdd-->
   <production_date>20240111</production_date>
-  <!--Reference Period Start and End Date-->
+  <!--Reference Period Start and End Date yyyymmdd-->
   <start_date>20180105</start_date>
   <end_date>20221228</end_date>
 
   <!--Burst perimeter - corners coordinates are in EPSG:4326-->
-  <burst_perimeter>POLYGON ((33.098005535200876 35.11517612263039,
+  <geometry>POLYGON ((33.098005535200876 35.11517612263039,
     33.05369474340623 35.30003518486628, 34.04812645097012 35.45191481283175,
     34.08879409662925 35.26688112117148, 33.098005535200876 35.11517612263039))
-  </burst_perimeter>
+  </geometry>
   <!--Coordinate Reference System-->
   <crs>EPSG:4326</crs>
 
@@ -52,14 +52,6 @@
           e Vulcanologia (INGV). https://doi.org/10.13127/tinitaly/1.1."
         </description>
       </dem>
-
-      <!--GNSS used for Calibration-->
-      <gnss>
-          <!--Input ID from TD3 - S3-NEO-I0[3,4,5]-->
-          <input_id>S3-NEO-I03</input_id>
-          <version>...</version>
-          <description>...0</description>
-      </gnss>
 
       <!--Reference SLC-->
       <reference>

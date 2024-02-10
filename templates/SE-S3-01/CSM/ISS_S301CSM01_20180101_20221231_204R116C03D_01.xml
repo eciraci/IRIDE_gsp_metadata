@@ -23,16 +23,16 @@
   <aoi_id>PSTD</aoi_id>
   <!--Data Provider: (eGeos, Planetek, TREA, Nhazka)-->
   <provider>eGeos</provider>
-  <!--Production Date-->
+  <!--Production Date yyyymmdd-->
   <production_date>20240111</production_date>
-  <!--Reference Period Start and End Date-->
+  <!--Reference Period Start and End Date yyyymmdd-->
   <start_date>20180101</start_date>
   <end_date>20221231</end_date>
   <!-- CSM Frame Perimeter -->
-  <frame_perimeter>POLYGON ((10.96959054236042 43.854008170998824,
+  <geometry>POLYGON ((10.96959054236042 43.854008170998824,
     10.958429097231194 43.81061117665624, 10.697213034695636 43.84518658251032,
     10.708277665659974 43.88857123783714, 10.96959054236042 43.854008170998824))
-  </frame_perimeter>
+  </geometry>
   <!--Coordinate Reference System-->
   <crs>EPSG:4326</crs>
 
