@@ -22,7 +22,7 @@
     <aoi>PSTD</aoi>
     <!--Note: Coordinate values does not represent the actual AOI location
     but are used here just for illustration purposes-->
-    <!--Bounding Box-->
+    <!--GSP Bounding Box-->
     <bbox>10.6205870026540996, 43.7213142073969010,
         11.2217260147361007, 44.1745231586271032</bbox>
     <!--Coordinate Reference System-->

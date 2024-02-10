@@ -1,26 +1,26 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--IRIDE Service Segment (ISS) - Lot2 - Metadata -->
-<!--ISS GSP -Distribution unit for S3-04-CSM-02-->
+<!--ISS GSP - Distribution unit for S3-02-SNT-02-->
 <GSP>
     <!--Geospatial Product ID from TD3-->
-    <gsp_id>S3-04-CSM-02</gsp_id>
+    <gsp_id>S3-02-SNT-02</gsp_id>
     <!--Product - File Name-->
-    <product_id>ISS_S304CSM02_20180101_20231231_204PSTD_01</product_id>
+    <product_id>ISS_S302SNT02_20180101_20231231_015PSTA_01</product_id>
     <!--Product Name - Description-->
-    <description>"Active Deformation Areas Close
-      to Infrastructures"</description>
+    <description>"LOS velocities projected along the
+        maximum slope direction"</description>
     <!--Satellite [CSM, SNT, SAO]-->
-    <sensor_id>CSM</sensor_id>
+    <sensor_id>SNT</sensor_id>
     <!--CSM Satellite Track-->
-    <track_id>204</track_id>
-    <!--IRIDE Area of Interest (PST)-->
-    <aoi_id>PST</aoi_id>
+    <track_id>015</track_id>
+    <!--IRIDE Area of Interest (PSTD = Pistoia Ascending)-->
+    <aoi_id>PSTA</aoi_id>
     <!--Data Provider: (eGeos, Planetek, TREA, Nhazka)-->
-    <provider>eGeos</provider>
+    <provider>TREA</provider>
     <!--Production Date yyyymmdd-->
     <production_date>20240111</production_date>
     <!--Reference Period Start and End Date yyyymmdd-->
-    <start_date>20180101</start_date>
+    <start_date>20180701</start_date>
     <end_date>20221231</end_date>
     <!-- GSP Perimeter -->
     <geometry>POLYGON ((11.1185084808333 43.7213142073969,
@@ -35,8 +35,8 @@
         <!--Input ISS Geospatial Products-->
         <gsp>
             <!--Geospatial Product ID from TD3-->
-            <gsp_id>S3-01-CSM-01</gsp_id>
-            <product_id>ISS_S301CSM01_20180701_20231231_204PSTD_01</product_id>
+            <gsp_id>S3-01-SNT-01</gsp_id>
+            <product_id>ISS_S301SNT01_20180701_20231231_015A_01</product_id>
         </gsp>
 
         <!--Input NEO Datasets-->

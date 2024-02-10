@@ -27,7 +27,7 @@
     <!--Production Date yyyymmdd-->
     <production_date>20240111</production_date>
     <!--Reference Period Start and End Date yyyymmdd-->
-    <start_date>20180105</start_date>
+    <start_date>20180701</start_date>
     <end_date>20221228</end_date>
 
     <!--Burst perimeter - corners coordinates are in EPSG:4326-->

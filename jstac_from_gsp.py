@@ -19,11 +19,11 @@ from pystac.extensions.projection import ProjectionExtension
 
 def main() -> None:
 
-    validate_schema = True  # - validate STAC schema
+    validate_schema = False  # - validate STAC schema
 
     # - path to sample GSP
     data_dir = os.path.join(os.path.expanduser('~'), 'Desktop')
-    gsp_name = 'ISS_S301SNT01_20180701_20230623_044A0227IW1_01'
+    gsp_name = 'ISS_S301SNT01_20180712_20230622_022D0865IW2_01'
     # gsp_path = os.path.join(data_dir, f'{gsp_name}.csv')
     # gsp_path = os.path.join(data_dir,  f'{gsp_name}.zip!{gsp_name}.csv')
     gsp_path = os.path.join(data_dir,  f'{gsp_name}.parquet')
@@ -64,14 +64,14 @@ def main() -> None:
     e_time = datetime.now()
     print(f"# - Conversion Time: {e_time - s_time}")
     # - save GSP to parquet
-    # gdf_smp.to_parquet(os.path.join(data_dir, f'{gsp_name}.parquet'))
+    gdf_smp.to_parquet(os.path.join(data_dir, f'{gsp_name}.parquet'))
 
-    # # - Plot GSP
+    # - Plot GSP
     # import matplotlib.pyplot as plt
     # fig, ax = plt.subplots()
     # gdf_smp.plot(ax=ax, c=gdf_smp['height'], cmap='viridis', legend=True)
     # plt.show()
-
+    #
     # collection = "iss-se-s3-01"
     # collection = pystac.Collection(id='wv3-images',
     #                                description='Spacenet 5 images over Moscow',
@@ -174,7 +174,13 @@ def main() -> None:
     pystac.write_file(obj=item, include_self_link=False,
                       dest_href=os.path.join(data_dir, f"{gsp_name}.json"))
 
-    # import zipfile
+    import zipfile
+    with zipfile.ZipFile(os.path.join(data_dir, f'{gsp_name}.zip'),
+                         'r') as zipf:
+        info = zipf.infolist()
+        zip_names = zipf.namelist()
+    print(f"# - Zip Info: {info}")
+    print(zip_names)
     # with zipfile.ZipFile(os.path.join(data_dir,  f'{gsp_name}.zip'), 'a') as zipf:
     #     # -
     #     source_path = os.path.join(data_dir, f"{gsp_name}.json")

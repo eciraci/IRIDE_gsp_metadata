@@ -3,11 +3,11 @@
 <!--BURST: distribution unit for S3-01-SNT-01 & S3-01-SNT-02-->
 <BURST>
   <!--Geospatial Product ID from TD3-->
-  <gsp_id>S3-01-SNT-01</gsp_id>
+  <gsp_id>S3-01-SNT-02</gsp_id>
   <!--Product - File Name-->
-  <product_id>ISS_S301SNT01_20180105_20221228_015A0216IW1_01</product_id>
+  <product_id>ISS_S301SNT02_20180105_20221228_015A0216IW1_01</product_id>
   <!--Product Name - Description-->
-  <description>"Single Geometry Deformation"</description>
+  <description>"Single Geometry Calibrated Deformation"</description>
   <!--Satellite [CSM, SNT, SAO]-->
   <sensor_id>SNT</sensor_id>
   <!--Sentinel track and burst identifier-->
@@ -27,7 +27,7 @@
   <!--Production Date yyyymmdd-->
   <production_date>20240111</production_date>
   <!--Reference Period Start and End Date yyyymmdd-->
-  <start_date>20180105</start_date>
+  <start_date>20180701</start_date>
   <end_date>20221228</end_date>
 
   <!--Burst perimeter - corners coordinates are in EPSG:4326-->
@@ -52,6 +52,14 @@
           e Vulcanologia (INGV). https://doi.org/10.13127/tinitaly/1.1."
         </description>
       </dem>
+
+      <!--GNSS used for Calibration-->
+      <gnss>
+          <!--Input ID from TD3 - S3-NEO-I0[3,4,5]-->
+          <input_id>S3-NEO-I03</input_id>
+          <version>...</version>
+          <description>...0</description>
+      </gnss>
 
       <!--Reference SLC-->
       <reference>
