@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--IRIDE Service Segment (ISS) - Lot2 - Metadata -->
+<!--Active Areas Deformation for S3-01-CSM-04-->
+ <REGION>
+    <!--Geospatial Product ID from TD3-->
+    <gsp_id>S3-01-CSM-04</gsp_id>
+    <!--Product - File Name-->
+    <product_id>ISS_S301CSM04_20180701_20231231_PSTE_01</product_id>
+    <!--Product Name - Description-->
+    <description>"Active Deformation Areas"</description>
+    <!--Satellite [CSM, SNT, SAO]-->
+    <sensor_id>CSM</sensor_id>
+    <!--Data Provider: (eGeos, Planetek, TREA, Nhazka)-->
+    <provider>eGeos</provider>
+    <!--Production Date-->
+    <production_date>20180101</production_date>
+    <!--Reference Period Start and End Date-->
+    <start_date>20180701</start_date>
+    <end_date>20231231</end_date>
+
+    <!--IRIDE Area of Interest (PSTD = Pistoia Descending)-->
+    <aoi>PSTD</aoi>
+    <!--Note: Coordinate values does not represent the actual AOI location
+    but are used here just for illustration purposes-->
+    <!--Bounding Box-->
+    <bbox>10.6205870026540996, 43.7213142073969010,
+        11.2217260147361007, 44.1745231586271032</bbox>
+    <!--Coordinate Reference System-->
+    <crs>EPSG:4326</crs>
+
+    <!--Sequence Input Products Used to Generate the GSP-->
+    <!--Include EO and NON-EO Data as reported in TD3 -->
+    <dataset>
+        <!--IFFI Landslide Catalogue-->
+        <input>
+            <!--Input ID from TD3-->
+            <input_id>S3-NEO-I07</input_id>
+            <version>1.0</version>
+            <!--Dataset Description-->
+            <description>"IFFI Landslide Catalogue (Version 1.0).
+                Istituto Nazionale di Geofisica e Vulcanologia (INGV).
+                https://doi.org/10.13127/IFFI-LS/1.0."
+            </description>
+        </input>
+
+        <!--List of S3-01-SNT-03 Used in the Production-->
+        <gsp>
+            <!--Geospatial Product ID from TD3-->
+            <gsp_id>S3-01-CSM-03</gsp_id>
+            <!--GSP file Name-->
+            <!--ExxNxx : CSM 2D Deformation Grid Upper-Left Corner -->
+            <product_id>ISS_S301CSM03_20180701_20231231_E437N220V_01</product_id>
+        </gsp>
+        ...
+    </dataset>
+ </REGION>
