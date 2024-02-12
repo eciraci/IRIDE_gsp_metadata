@@ -15,7 +15,7 @@
     <track_id>204</track_id>
     <!--IRIDE Area of Interest (PST)-->
     <aoi_id>PST</aoi_id>
-    <!--Data Provider: (eGeos, Planetek, TREA, Nhazka)-->
+    <!--Data Provider: (eGeos, Planetek, TREA, Nhazca)-->
     <provider>eGeos</provider>
     <!--Production Date yyyymmdd-->
     <production_date>20240111</production_date>
