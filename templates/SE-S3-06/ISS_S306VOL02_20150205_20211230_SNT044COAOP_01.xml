@@ -14,8 +14,8 @@
     <track_id>044</track_id>
     <!--IRIDE Area of Interest (COA Colli Albani)-->
     <aoi_id>COA</aoi_id>
-    <!--Data Provider: (eGeos, Planetek, TREA, Nhazka)-->
-    <provider>Nhazka</provider>
+    <!--Data Provider: (eGeos, Planetek, TREA, Nhazca)-->
+    <provider>Nhazca</provider>
     <!--Production Date yyyymmdd-->
     <production_date>20240111</production_date>
     <!--Reference Period Start and End Date yyyymmdd-->
