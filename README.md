@@ -1,1 +1,2 @@
-# IRIDE_gsp_metadata
+# IRIDE Service Segment  - Lot-2
+## Metadata Templates

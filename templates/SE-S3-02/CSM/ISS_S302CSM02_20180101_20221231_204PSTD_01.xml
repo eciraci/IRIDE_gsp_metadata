@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--IRIDE Service Segment (ISS) - Lot2 - Metadata -->
+<!--ISS GSP - Distribution unit for S3-02-CSM-02-->
+<GSP>
+    <!--Geospatial Product ID from TD3-->
+    <gsp_id>S3-02-CSM-02</gsp_id>
+    <!--Product - File Name-->
+    <product_id>ISS_S302CSM02_20180101_20231231_204PSTD_01</product_id>
+    <!--Product Name - Description-->
+    <description>"LOS velocities projected along the maximum slope direction"</description>
+    <!--Satellite [CSM, SNT, SAO]-->
+    <sensor_id>CSM</sensor_id>
+    <!--CSM Satellite Track-->
+    <track_id>204</track_id>
+    <aoi_id>PSTD</aoi_id>
+    <!--Data Provider: (eGeos, Planetek, TREA, Nhazka)-->
+    <provider>TREA</provider>
+    <!--Production Date yyyymmdd-->
+    <production_date>20240111</production_date>
+    <!--Reference Period Start and End Date yyyymmdd-->
+    <start_date>20180101</start_date>
+    <end_date>20221231</end_date>
+    <!-- GSP Perimeter -->
+    <geometry> POLYGON ((11.1185084808333 43.7213142073969,
+        10.6205870026541 43.7895188211484, 10.7202373078149	44.1745231586271,
+        11.2217260147361 44.1069055189923, 11.1185084808333	43.7213142073969))
+    </geometry>
+    <!--Coordinate Reference System-->
+    <crs>EPSG:4326</crs>
+
+    <!--List of inputs an GSPs used to generate the product.-->
+    <dataset>
+        <!--Input ISS Geospatial Products-->
+        <gsp>
+            <!--Geospatial Product ID from TD3-->
+            <gsp_id>S3-01-CSM-01</gsp_id>
+            <product_id>ISS_S301CSM01_20180101_20231231_204PSTD_01</product_id>
+        </gsp>
+
+        <!--Input NEO Datasets-->
+        <input>
+            <!--Input ID from TD3-->
+            <input_id>S3-NEO-I01</input_id>
+            <version>Tinitaly-10</version>
+            <!--Dataset Description-->
+            <description>"Tarquini S., I. Isola, M. Favalli, A. Battistini,
+                G. Dotta (2023). TINITALY, a digital elevation model of Italy with
+                a 10 meters cell size (Version 1.1). Istituto Nazionale di Geofisica
+                e Vulcanologia (INGV). https://doi.org/10.13127/tinitaly/1.1."
+            </description>
+        </input>
+
+        <!--Other Input Products Used to Generate the GSP-->
+         ...
+
+
+    </dataset>
+  
+</GSP>
+

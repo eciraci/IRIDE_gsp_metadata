@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--IRIDE Service Segment (ISS) - Lot2 - Metadata -->
+<!--ISS GSP - Distribution unit for S3-05-VOL-02-->
+<GSP>
+    <!--Geospatial Product ID from TD3-->
+    <gsp_id>S3-03-CHA-01</gsp_id>
+    <!--Product - File Name-->
+    <product_id>ISS_S306VOL02_20150205_20211230_SNT044COAOP_01</product_id>
+    <!--Product Name - Description-->
+    <description>"Active Deformation Areas Perimeter"</description>
+    <!--Satellite [CSM, SNT, SAO]-->
+    <sensor_id>SNT</sensor_id>
+    <!--CSM Satellite Track-->
+    <track_id>044</track_id>
+    <!--IRIDE Area of Interest (COA Colli Albani)-->
+    <aoi_id>COA</aoi_id>
+    <!--Data Provider: (eGeos, Planetek, TREA, Nhazka)-->
+    <provider>Nhazka</provider>
+    <!--Production Date yyyymmdd-->
+    <production_date>20240111</production_date>
+    <!--Reference Period Start and End Date yyyymmdd-->
+    <start_date>20150205</start_date>
+    <end_date>20211230</end_date>
+    <!-- GSP Perimeter -->
+    <!--Note: Coordinate values does not represent the actual tile location
+    but are used here just for illustration purposes-->
+    <geometry>POLYGON ((11.1185084808333 43.7213142073969,
+        10.6205870026541 43.7895188211484, 10.7202373078149	44.1745231586271,
+        11.2217260147361 44.1069055189923, 11.1185084808333	43.7213142073969))
+    </geometry>
+    <!--Coordinate Reference System-->
+    <crs>EPSG:4326</crs>
+
+    <!--List of inputs an GSPs used to generate the product.-->
+    <dataset>
+        <!--Input ISS Geospatial Products-->
+        <gsp>
+            <!--Geospatial Product ID from TD3-->
+            <gsp_id>S3-01-SNT-01</gsp_id>
+            <product_id>ISS_S301SNT01_20180701_20231231_044A_01</product_id>
+        </gsp>
+
+        <!--Input NEO Datasets-->
+        <input>
+            <input_id>S3-NEO-I13</input_id>
+            <version>Volcanic areas</version>
+            <description>"INGV - Istituto Nazionale di Geofisica e Vulcanologia"
+            </description>
+        </input>
+
+        <!--Other Input Products Used to Generate the GSP-->
+         ...
+
+    </dataset>
+</GSP>
+

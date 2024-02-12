@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--IRIDE Service Segment (ISS) - Lot2 - Metadata -->
+<!--TILE: 100km x 100km distribution unit for S3-01-SNT-03-->
+<TILE>
+    <!--Geospatial Product ID from TD3-->
+    <gsp_id>S3-01-SNT-03</gsp_id>
+    <!--Product - File Name-->
+    <product_id>ISS_S301SNT03_20180105_20221228_E43N18V_01</product_id>
+    <!--Product Name - Description-->
+    <description>"2D Deformation East-West and Vertical"</description>
+    <!--Satellite [CSM, SNT, SAO]-->
+    <sensor_id>SNT</sensor_id>
+    <!--Data Provider: (eGeos, Planetek, TREA, Nhazka)-->
+    <provider>eGeos</provider>
+    <!--Production Date yyyymmdd-->
+    <production_date>20240111</production_date>
+    <!--Reference Period Start and End Date yyyymmdd-->
+    <start_date>20180701</start_date>
+    <end_date>20231231</end_date>
+    <!--East-West, North-South coordinates of
+    the upper-left corner of the tile in EPSG:3035-->
+    <ew_coords>4300000</ew_coords>
+    <ns_coords>1800000</ns_coords>
+    <!--Tile Perimeter-->
+    <geometry>POLYGON ((4300000 1900000, 4300000 2000000,
+        4400000 2000000, 4400000 1900000, 4300000 1900000))
+    </geometry>
+    <!--Coordinate Reference System-->
+    <crs>EPSG:3035</crs>
+
+    <!--Sequence Input Products Used to Generate the GSP-->
+    <!--Include EO and NON-EO Data as reported in TD3 -->
+    <dataset>
+        <!--DEM used for geocoding-->
+        <dem>
+            <!--Input ID from TD3-->
+            <input_id>S3-NEO-I01</input_id>
+            <version>Tinitaly-10</version>
+            <!--Dataset Description-->
+            <description>"Tarquini S., I. Isola, M. Favalli, A. Battistini,
+              G. Dotta (2023). TINITALY, a digital elevation model of Italy with
+              a 10 meters cell size (Version 1.1). Istituto Nazionale di Geofisica
+              e Vulcanologia (INGV). https://doi.org/10.13127/tinitaly/1.1."
+            </description>
+        </dem>
+
+        <gsp>
+             <!--Geospatial Product ID from TD3-->
+            <gsp_id>S3-01-SNT-02</gsp_id>
+              <!--GSP file Name-->
+            <product_id>ISS_S301SNT01_20180105_20221228_08710208VVA_01</product_id>
+        </gsp>
+
+        <gsp>
+            <!--Geospatial Product ID from TD3-->
+            <gsp_id>S3-01-SNT-02</gsp_id>
+            <!--GSP file Name-->
+            <product_id>ISS_S301SNT01_20180105_20221228_08110248VVD_01</product_id>
+        </gsp>
+
+        <!--Other Input Products Used to Generate the GSP-->
+        ...
+    </dataset>
+</TILE>
