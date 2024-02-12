@@ -2,12 +2,21 @@
 u"""
 Written by:  Enrico Ciraci' - February 2024
 
-Add a JSON Stack Item to an existing Geospatial Products (GSP) file
-saved inside a .zip file.
+Add a JSON STAC file to an existing Geospatial Products (GSP) file
+saved inside a .zip archive.
+
+Python Dependencies:
+geopandas: Open source project to make working with geospatial data
+    in python easier: https://geopandas.org
+dask_geopandas: Dask-based parallelized geospatial operations
+    for GeoPandas: https://dask-geopandas.readthedocs.io/en/stable/
+pystac: Python library for working with SpatioTemporal Asset Catalogs
+    (STAC): https://pystac.readthedocs.io/en/latest/
 """
 # - Python Dependencies
 import os
 from datetime import datetime, timezone
+import zipfile
 # - Third-Party Dependencies
 import pystac
 import geopandas as gpd
@@ -17,24 +26,54 @@ from pystac.extensions.sat import ItemSatExtension, SatExtension, OrbitState
 from pystac.extensions.projection import ProjectionExtension
 
 
-def main() -> None:
+def update_zip(zip_name: str, file_name: str) -> None:
+    """
+    Update a file inside a zip archive
+    :param zip_name: absolute path to the zip file
+    :param file_name: absolute path to the file to be added
+    :return: None
+    """
+    # - generate a temporary copy of the input zip file
+    temp_zip = zip_name.replace('.zip', '_temp.zip')
 
+    # - read zip archive content
+    with zipfile.ZipFile(zip_name, 'r') as zin:
+        with zipfile.ZipFile(temp_zip, 'w') as zout:
+            zout.comment = zin.comment      # - preserve zip comment
+            for item in zin.infolist():
+                if item.filename != os.path.basename(file_name):
+                    # - Copy all other files to the new archive
+                    zout.writestr(item.filename, zin.read(item.filename))
+    # - Replace original archive with the temp archive
+    os.remove(zip_name)
+    os.rename(temp_zip, zip_name)
+
+    # Add the new file with its new data
+    with zipfile.ZipFile(zip_name, mode='a',
+                         compression=zipfile.ZIP_DEFLATED) as zf:
+        zf.write(file_name, os.path.basename(file_name))
+
+
+def main() -> None:
+    # - Set Parameters
+    overwrite = True  # - overwrite existing files
     validate_schema = False  # - validate STAC schema
 
     # - path to sample GSP
     data_dir = os.path.join(os.path.expanduser('~'), 'Desktop')
     gsp_name = 'ISS_S301SNT01_20180712_20230622_022D0865IW2_01'
-    # gsp_path = os.path.join(data_dir, f'{gsp_name}.csv')
-    # gsp_path = os.path.join(data_dir,  f'{gsp_name}.zip!{gsp_name}.csv')
-    gsp_path = os.path.join(data_dir,  f'{gsp_name}.parquet')
+
+    gsp_path = os.path.join(data_dir, f'{gsp_name}.csv')
+    gsp_path = os.path.join(data_dir,  f'{gsp_name}.zip!{gsp_name}.csv')
+    # gsp_path = os.path.join(data_dir,  f'{gsp_name}.parquet')
 
     print(f"# - GSP Path: {gsp_path}")
     print('# - Loading GSP...')
 
     # - read GSP
     s_time = datetime.now()
-    # gdf_smp = dgpd.read_file(gsp_path, npartitions=4)
-    gdf_smp = dgpd.read_parquet(gsp_path, npartitions=4)
+    gdf_smp = dgpd.read_file(gsp_path, npartitions=4)
+    # gdf_smp = dgpd.read_parquet(gsp_path, npartitions=4)
 
     geometry = dgpd.points_from_xy(gdf_smp, x='longitude', y='latitude',
                                    crs="EPSG:4326")
@@ -66,27 +105,22 @@ def main() -> None:
     # - save GSP to parquet
     gdf_smp.to_parquet(os.path.join(data_dir, f'{gsp_name}.parquet'))
 
-    # - Plot GSP
-    # import matplotlib.pyplot as plt
-    # fig, ax = plt.subplots()
-    # gdf_smp.plot(ax=ax, c=gdf_smp['height'], cmap='viridis', legend=True)
-    # plt.show()
-    #
+    # - Create STAC Item
     # collection = "iss-se-s3-01"
     # collection = pystac.Collection(id='wv3-images',
     #                                description='Spacenet 5 images over Moscow',
     #                                extent=collection_extent,
     #                                license='CC-BY-SA-4.0')
 
-    catalog = pystac.Catalog(
-        id='Paranapanema',
-        description='Water masks from Paranapanema basin',
-        stac_extensions=[
-            'https://stac-extensions.github.io/projection/v1.0.0/schema.json',
-            'https://stac-extensions.github.io/sat/v1.0.0/schema.json',
-            'https://stac-extensions.github.io/sar/v1.0.0/schema.json',
-        ]
-    )
+    # catalog = pystac.Catalog(
+    #     id='Paranapanema',
+    #     description='Water masks from Paranapanema basin',
+    #     stac_extensions=[
+    #         'https://stac-extensions.github.io/projection/v1.0.0/schema.json',
+    #         'https://stac-extensions.github.io/sat/v1.0.0/schema.json',
+    #         'https://stac-extensions.github.io/sar/v1.0.0/schema.json',
+    #     ]
+    # )
 
     print(f"# - Geometry: {env_geometry}")
     bbox = [xmin, ymin, xmax, ymax]
@@ -168,37 +202,26 @@ def main() -> None:
     if validate_schema:
         item.validate()
 
-    catalog.add_item(item)
-    catalog.describe()
+    # catalog.add_item(item)
+    # catalog.describe()
     # - Write Item to JSON file
     pystac.write_file(obj=item, include_self_link=False,
                       dest_href=os.path.join(data_dir, f"{gsp_name}.json"))
 
-    import zipfile
     with zipfile.ZipFile(os.path.join(data_dir, f'{gsp_name}.zip'),
                          'r') as zipf:
-        info = zipf.infolist()
         zip_names = zipf.namelist()
-    print(f"# - Zip Info: {info}")
-    print(zip_names)
-    # with zipfile.ZipFile(os.path.join(data_dir,  f'{gsp_name}.zip'), 'a') as zipf:
-    #     # -
-    #     source_path = os.path.join(data_dir, f"{gsp_name}.json")
-    #     destination = f"{gsp_name}.json"
-    #     zipf.write(source_path, destination)
-
-    # - generate xml metadata inspired by ISO-19115
-    # import xml.etree.ElementTree as ET
-    # root = ET.Element("metadata")
-    # ET.SubElement(root, "title").text = f"{gsp_name}"
-    # ET.SubElement(root, "abstract").text = "This is a sample abstract"
-    # tree = ET.ElementTree(root)
-    # tree.write(os.path.join(data_dir, f"{gsp_name}.xml"))
-    # from stac_validator import stac_validator
-    # stac = stac_validator.StacValidate(os.path.join(data_dir, f"{gsp_name}.json"))
-    # stac.run()
-    # print(stac.message)
-
+    if f"{gsp_name}.json" in zip_names and overwrite:
+        update_zip(os.path.join(data_dir,  f'{gsp_name}.zip'),
+                   os.path.join(data_dir, f"{gsp_name}.json"))
+    else:
+        with zipfile.ZipFile(
+                os.path.join(data_dir, f'{gsp_name}.zip'),
+                'w') as zip_f:
+            # -
+            source_path = os.path.join(data_dir, f"{gsp_name}.json")
+            destination = f"{gsp_name}.json"
+            zip_f.write(source_path, destination)
 
 
 # - run main program

@@ -32,24 +32,24 @@
 
     <!--List of inputs an GSPs used to generate the product.-->
     <dataset>
-    <!--Input ISS Geospatial Products-->
-    <gsp>
-        <!--Geospatial Product ID from TD3-->
-        <gsp_id>S3-01-SNT-01</gsp_id>
-        <product_id>ISS_S301SNT01_20180701_20231231_015A_01</product_id>
-    </gsp>
+        <!--Input ISS Geospatial Products-->
+        <gsp>
+            <!--Geospatial Product ID from TD3-->
+            <gsp_id>S3-01-SNT-01</gsp_id>
+            <product_id>ISS_S301SNT01_20180701_20231231_015A_01</product_id>
+        </gsp>
 
-    <!--Input NEO Datasets-->
-    <input>
-        <input_id>S3-NEO-I09</input_id>
-        <version>OpenStreetMap</version>
-        <description>"OpenStreetMap (Version 1.0). OpenStreetMap Foundation.
-            https://doi.org/10.13127/osm/1.0."
-        </description>
-    </input>
+        <!--Input NEO Datasets-->
+        <input>
+            <input_id>S3-NEO-I09</input_id>
+            <version>OpenStreetMap</version>
+            <description>"OpenStreetMap (Version 1.0). OpenStreetMap Foundation.
+                https://doi.org/10.13127/osm/1.0."
+            </description>
+        </input>
 
-    <!--Other Input Products Used to Generate the GSP-->
-     ...
+        <!--Other Input Products Used to Generate the GSP-->
+         ...
 
     </dataset>
 
