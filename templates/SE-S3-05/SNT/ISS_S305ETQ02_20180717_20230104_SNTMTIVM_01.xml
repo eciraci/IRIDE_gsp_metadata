@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<GSP>
+    <gsp_id>S3-05-ETQ-02</gsp_id>
+    <product_id>ISS_S305ETQ02_20180717_20230104_SNTMTIVM_01</product_id>
+    <description>"2D calibrated deformations: East-West and Vertical components"</description>
+    <sensor_id>SNT</sensor_id>
+    <component>Vertical</component>
+    <aoi_id>MTI</aoi_id>
+    <provider>Planetek</provider>
+    <production_date>20240214</production_date>
+    <start_date>20180717</start_date>
+    <end_date>20230104</end_date>
+    <geometry>POLYGON ((4775274 2077623, 4781075 2109419, 4824434 2117173, 4838568 2110099, 4840162 2094041, 4819507 2064121, 4795683 2063023, 4775274 2077623))</geometry>
+    <crs>EPSG:3035</crs>
+    <dataset>
+        <gsp>
+            <gsp_id>S3-01-SNT-03</gsp_id>
+            <product_id>ISS_S301SNT03_20180717_20230104_E47N20V_01</product_id>
+        </gsp>
+        <gsp>
+            <gsp_id>S3-01-SNT-03</gsp_id>
+            <product_id>ISS_S301SNT03_20180717_20230104_E47N21V_01</product_id>
+        </gsp>
+        <gsp>
+            <gsp_id>S3-01-SNT-03</gsp_id>
+            <product_id>ISS_S301SNT03_20180705_20230104_E48N20V_01</product_id>
+        </gsp>
+        <gsp>
+            <gsp_id>S3-01-SNT-03</gsp_id>
+            <product_id>ISS_S301SNT03_20180705_20230104_E48N21V_01</product_id>
+        </gsp>
+    </dataset>
+</GSP>

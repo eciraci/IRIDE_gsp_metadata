@@ -62,8 +62,6 @@ def main() -> None:
     # - path to sample GSP
     data_dir = os.path.join(os.path.expanduser('~'), 'Desktop')
     gsp_name = 'ISS_S301SNT01_20180712_20230622_022D0865IW2_01'
-
-    gsp_path = os.path.join(data_dir, f'{gsp_name}.csv')
     gsp_path = os.path.join(data_dir,  f'{gsp_name}.zip!{gsp_name}.csv')
     # gsp_path = os.path.join(data_dir,  f'{gsp_name}.parquet')
 
@@ -73,6 +71,7 @@ def main() -> None:
     # - read GSP
     s_time = datetime.now()
     gdf_smp = dgpd.read_file(gsp_path, npartitions=4)
+    # - Neglect this step
     # gdf_smp = dgpd.read_parquet(gsp_path, npartitions=4)
 
     geometry = dgpd.points_from_xy(gdf_smp, x='longitude', y='latitude',
@@ -102,26 +101,10 @@ def main() -> None:
 
     e_time = datetime.now()
     print(f"# - Conversion Time: {e_time - s_time}")
-    # - save GSP to parquet
-    gdf_smp.to_parquet(os.path.join(data_dir, f'{gsp_name}.parquet'))
+    # - save GSP to parquet - Neglect this step
+    # .to_parquet(os.path.join(data_dir, f'{gsp_name}.parquet'))
 
     # - Create STAC Item
-    # collection = "iss-se-s3-01"
-    # collection = pystac.Collection(id='wv3-images',
-    #                                description='Spacenet 5 images over Moscow',
-    #                                extent=collection_extent,
-    #                                license='CC-BY-SA-4.0')
-
-    # catalog = pystac.Catalog(
-    #     id='Paranapanema',
-    #     description='Water masks from Paranapanema basin',
-    #     stac_extensions=[
-    #         'https://stac-extensions.github.io/projection/v1.0.0/schema.json',
-    #         'https://stac-extensions.github.io/sat/v1.0.0/schema.json',
-    #         'https://stac-extensions.github.io/sar/v1.0.0/schema.json',
-    #     ]
-    # )
-
     print(f"# - Geometry: {env_geometry}")
     bbox = [xmin, ymin, xmax, ymax]
 
