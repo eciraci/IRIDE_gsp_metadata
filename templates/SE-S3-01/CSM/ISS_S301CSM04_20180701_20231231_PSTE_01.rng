@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar ns="" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+    <start>
+        <element name="GSP">
+            <ref name="gsp_id"/>
+            <ref name="product_id"/>
+            <ref name="description"/>
+            <element name="sensor_id">
+                <data type="NCName"/>
+            </element>
+            <element name="provider">
+                <data type="NCName"/>
+            </element>
+            <element name="production_date">
+                <data type="integer"/>
+            </element>
+            <element name="start_date">
+                <data type="integer"/>
+            </element>
+            <element name="end_date">
+                <data type="integer"/>
+            </element>
+            <element name="aoi">
+                <data type="NCName"/>
+            </element>
+            <element name="bbox">
+                <text/>
+            </element>
+            <element name="crs">
+                <data type="NMTOKEN"/>
+            </element>
+            <element name="dataset">
+                <oneOrMore>
+                    <choice>
+                        <text/>
+                        <element name="gsp">
+                            <ref name="gsp_id"/>
+                            <ref name="product_id"/>
+                        </element>
+                        <element name="input">
+                            <element name="input_id">
+                                <data type="NCName"/>
+                            </element>
+                            <element name="version">
+                                <data type="decimal"/>
+                            </element>
+                            <ref name="description"/>
+                        </element>
+                    </choice>
+                </oneOrMore>
+            </element>
+        </element>
+    </start>
+    <define name="gsp_id">
+        <element name="gsp_id">
+            <data type="NCName"/>
+        </element>
+    </define>
+    <define name="product_id">
+        <element name="product_id">
+            <text/>
+        </element>
+    </define>
+    <define name="description">
+        <element name="description">
+            <text/>
+        </element>
+    </define>
+</grammar>
