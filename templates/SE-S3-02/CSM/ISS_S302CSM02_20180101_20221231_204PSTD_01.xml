@@ -13,7 +13,7 @@
     <!--CSM Satellite Track-->
     <track_id>204</track_id>
     <aoi_id>PSTD</aoi_id>
-    <!--Data Provider: (eGeos, Planetek, TREA, Nhazka)-->
+    <!--Data Provider: (eGeos, Planetek, TREA, Nhazca)-->
     <provider>TREA</provider>
     <!--Production Date yyyymmdd-->
     <production_date>20240111</production_date>
