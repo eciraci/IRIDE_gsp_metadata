@@ -10,7 +10,11 @@
     <production_date>20240214</production_date>
     <start_date>20180717</start_date>
     <end_date>20230104</end_date>
-    <geometry>POLYGON ((4775274 2077623, 4781075 2109419, 4824434 2117173, 4838568 2110099, 4840162 2094041, 4819507 2064121, 4795683 2063023, 4775274 2077623))</geometry>
+    <!--Note: Coordinate values does not represent the actual GSP location
+    but are used here just for illustration purposes-->
+    <geometry>POLYGON ((4775274 2077623, 4781075 2109419, 4824434 2117173,
+        4838568 2110099, 4840162 2094041, 4819507 2064121, 4795683 2063023,
+        4775274 2077623))</geometry>
     <crs>EPSG:3035</crs>
     <dataset>
         <gsp>

@@ -22,7 +22,7 @@ import pystac
 import geopandas as gpd
 import dask_geopandas as dgpd
 from pystac.extensions.sar import SarExtension, FrequencyBand, Polarization
-from pystac.extensions.sat import ItemSatExtension, SatExtension, OrbitState
+from pystac.extensions.sat import SatExtension, OrbitState
 from pystac.extensions.projection import ProjectionExtension
 
 

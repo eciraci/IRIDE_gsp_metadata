@@ -29,6 +29,8 @@
   <start_date>20180101</start_date>
   <end_date>20221231</end_date>
   <!-- Nhazca -->
+    <!--Note: Coordinate values does not represent the actual cell location
+    but are used here just for illustration purposes-->
   <geometry>POLYGON ((10.65519271066972 43.88672941335709,
     10.643716166782234 43.92873590400083, 10.812883600312924 43.95248578725976,
     10.82427640920696 43.91048430512687, 10.65519271066972 43.88672941335709))
