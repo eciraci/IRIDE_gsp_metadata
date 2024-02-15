@@ -18,7 +18,7 @@
     <start_date>20180701</start_date>
     <end_date>20231231</end_date>
     <!--East-West, North-South coordinates of
-    the upper-left corner of the tile in EPSG:3035-->
+    the lower-left corner of the tile in EPSG:3035-->
     <!--Note: Coordinate values does not represent the actual tile location
     but are used here just for illustration purposes-->
     <ew_coords>4370000</ew_coords>

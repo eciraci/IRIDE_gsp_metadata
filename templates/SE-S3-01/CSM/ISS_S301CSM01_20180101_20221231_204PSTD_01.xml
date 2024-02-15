@@ -2,40 +2,42 @@
 <!--IRIDE Service Segment (ISS) - Lot2 - Metadata -->
 <!--CSM FRAME -Distribution unit for S3-01-CSM-01-->
 <FRAME>
-  <!--Geospatial Product ID from TD3-->
-  <gsp_id>S3-01-CSM-01</gsp_id>
-  <!--Product - File Name-->
-  <product_id>ISS_S301CSM01_20180101_20231231_204PSTD_01</product_id>
-  <!--Product Name - Description-->
-  <description>"Single Geometry Calibrated Deformation"</description>
-  <!--Satellite [CSM, SNT, SAO]-->
-  <sensor_id>CSM</sensor_id>
-  <!--CSM Satellite Track-->
-  <track_id>204</track_id>
-  <!--Sensor Mode-->
-  <smode_id>STR-005</smode_id>
-  <!--Polarization-->
-  <polarization_id>HH</polarization_id>
-  <!--IRIDE Area of Interest (PSTD = Pistoia Descending)-->
-  <aoi_id>PSTD</aoi_id>
-  <!--Data Provider: (eGeos, Planetek, TREA, Nhazca)-->
-  <provider>eGeos</provider>
-  <!--Production Date yyyymmdd-->
-  <production_date>20240111</production_date>
-  <!--Reference Period Start and End Date yyyymmdd-->
-  <start_date>20180101</start_date>
-  <end_date>20221231</end_date>
-  <!-- CSM Frame Perimeter -->
-  <geometry> POLYGON ((11.1185084808333 43.7213142073969,
+    <!--Geospatial Product ID from TD3-->
+    <gsp_id>S3-01-CSM-01</gsp_id>
+    <!--Product - File Name-->
+    <product_id>ISS_S301CSM01_20180101_20231231_204PSTD_01</product_id>
+    <!--Product Name - Description-->
+    <description>"Single Geometry Calibrated Deformation"</description>
+    <!--Satellite [CSM, SNT, SAO]-->
+    <sensor_id>CSM</sensor_id>
+    <!--CSM Satellite Track-->
+    <track_id>204</track_id>
+    <!--Sensor Mode-->
+    <smode_id>STR-005</smode_id>
+    <!--Polarization-->
+    <polarization_id>HH</polarization_id>
+    <!--IRIDE Area of Interest (PSTD = Pistoia Descending)-->
+    <aoi_id>PSTD</aoi_id>
+    <!--Data Provider: (eGeos, Planetek, TREA, Nhazca)-->
+    <provider>eGeos</provider>
+    <!--Production Date yyyymmdd-->
+    <production_date>20240111</production_date>
+    <!--Reference Period Start and End Date yyyymmdd-->
+    <start_date>20180101</start_date>
+    <end_date>20221231</end_date>
+    <!-- CSM Frame Perimeter -->
+    <!--Note: Coordinate values does not represent the actual frame location
+    but are used here just for illustration purposes-->
+    <geometry> POLYGON ((11.1185084808333 43.7213142073969,
     10.6205870026541 43.7895188211484, 10.7202373078149	44.1745231586271,
     11.2217260147361 44.1069055189923, 11.1185084808333	43.7213142073969))
-  </geometry>
-  <!--Coordinate Reference System-->
-  <crs>EPSG:4326</crs>
+    </geometry>
+    <!--Coordinate Reference System-->
+    <crs>EPSG:4326</crs>
 
-  <!--List of inputs an GSPs used to generate the product.-->
-   <dataset>
-   <!--DEM used for geocoding-->
+    <!--List of inputs an GSPs used to generate the product.-->
+    <dataset>
+    <!--DEM used for geocoding-->
     <dem>
         <!--Input ID from TD3-->
         <input_id>S3-NEO-I01</input_id>

@@ -1,0 +1,11 @@
+name: IRIDE_gsp
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.12
+  - lxml
+  - dask
+  - geopandas
+  - pystac
+  - dask_geopandas
