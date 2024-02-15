@@ -18,10 +18,12 @@
     <start_date>20180701</start_date>
     <end_date>20231231</end_date>
     <!--East-West, North-South coordinates of
-    the upper-left corner of the tile in EPSG:3035-->
+    the lower-left corner of the tile in EPSG:3035-->
     <ew_coords>4300000</ew_coords>
     <ns_coords>1800000</ns_coords>
     <!--Tile Perimeter-->
+    <!--Note: Coordinate values does not represent the actual Tile location
+    but are used here just for illustration purposes-->
     <geometry>POLYGON ((4300000 1900000, 4300000 2000000,
         4400000 2000000, 4400000 1900000, 4300000 1900000))
     </geometry>
