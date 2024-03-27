@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!--IRIDE Service Segment (ISS) - Lot2 - Metadata-->
+<!--GSP: Metadata template for S3-01-SNT-01 & S3-01-SNT-02-->
+<!--     These products are distributed by grouping single bursts
+         belonging to the same track and intersecting the area of the
+         area of interest. In this case: Molise: MOL-->
+<GSP>
+	<!--Geospatial Product ID from TD3-->
+	<gsp_id>S3-01-SNT-01</gsp_id>
+	<!--Product - File Name-->
+	<product_id>ISS_S301SNT01_20180701_20230623_044MOLA_01</product_id>
+    <!--Product Name - Description-->
+	<description>"Single Geometry Deformation"</description>
+	<!--Satellite [CSM, SNT, SAO]-->
+	<sensor_id>SNT</sensor_id>
+	<!--Track Number-->
+	<track>044</track>
+	<!--Polarization-->
+	<polarization>VV</polarization>
+	<!--Orbit Direction-->
+	<direction>A</direction>
+	<!--Area of Interest-->
+	<region>Molise</region>
+	<!--Data Provider-->
+	<provider>eGeos</provider>
+	<!--Production Data-->
+	<production_date>20240229</production_date>
+	<!--Start Date and End Date-->
+	<start_date>20180701</start_date>
+	<end_date>20230623</end_date>
+	<!--Dataset Envelope or bounding-box-->
+	<!--This element could be also a GeoJSON object-->
+	<geometry>POLYGON ((13.941282 41.381718, 13.941282 42.069287, 15.158177 42.069287, 15.158177 41.381718, 13.941282 41.381718))</geometry>
+	<!--Coordinate Reference System-->
+	<crs>EPSG:4326</crs>
+	<dataset>
+		<!--The Dataset section contains the list of input EO, NON-EO and
+		other geospatial products used to generate the associated dataset.-->
+		<dem>
+			<input_id>S3-NEO-I01</input_id>
+			<version>Cop-DEM - Resolution (m) 30 x 30</version>
+			<description>Copernicus Digital Elevation Model (DEM) (Version 1.0). https://spacedata.copernicus.eu/collections/copernicus-digital-elevation-model.</description>
+		</dem>
+		<gsp>
+			<gsp_id>S3-01-SNT-01</gsp_id>
+			<product_id>ISS_S301SNT01_20180701_20230623_044A0243IW1_01</product_id>
+		</gsp>
+		<gsp>
+			<gsp_id>S3-01-SNT-01</gsp_id>
+			<product_id>ISS_S301SNT01_20180701_20230623_044A0244IW1_01</product_id>
+		</gsp>
+		<gsp>
+			<gsp_id>S3-01-SNT-01</gsp_id>
+			<product_id>ISS_S301SNT01_20180701_20230623_044A0245IW2_01</product_id>
+		</gsp>
+		<gsp>
+			<gsp_id>S3-01-SNT-01</gsp_id>
+			<product_id>ISS_S301SNT01_20180701_20230623_044A0245IW1_01</product_id>
+		</gsp>
+		<gsp>
+			<gsp_id>S3-01-SNT-01</gsp_id>
+			<product_id>ISS_S301SNT01_20180701_20230623_044A0246IW2_01</product_id>
+		</gsp>
+		<gsp>
+			<gsp_id>S3-01-SNT-01</gsp_id>
+			<product_id>ISS_S301SNT01_20180701_20230623_044A0246IW3_01</product_id>
+		</gsp>
+		<gsp>
+			<gsp_id>S3-01-SNT-01</gsp_id>
+			<product_id>ISS_S301SNT01_20180701_20230623_044A0243IW2_01</product_id>
+		</gsp>
+		<gsp>
+			<gsp_id>S3-01-SNT-01</gsp_id>
+			<product_id>ISS_S301SNT01_20180701_20230623_044A0245IW3_01</product_id>
+		</gsp>
+		<gsp>
+			<gsp_id>S3-01-SNT-01</gsp_id>
+			<product_id>ISS_S301SNT01_20180701_20230623_044A0246IW1_01</product_id>
+		</gsp>
+		<gsp>
+			<gsp_id>S3-01-SNT-01</gsp_id>
+			<product_id>ISS_S301SNT01_20180701_20230623_044A0247IW2_01</product_id>
+		</gsp>
+		<gsp>
+			<gsp_id>S3-01-SNT-01</gsp_id>
+			<product_id>ISS_S301SNT01_20180701_20230623_044A0244IW2_01</product_id>
+		</gsp>
+		<gsp>
+			<gsp_id>S3-01-SNT-01</gsp_id>
+			<product_id>ISS_S301SNT01_20180701_20230623_044A0244IW3_01</product_id>
+		</gsp>
+	</dataset>
+</GSP>
