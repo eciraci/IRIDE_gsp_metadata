@@ -9,7 +9,7 @@
     - 01: First version of the product.
   
   - **ISS_S302SNT02_20180701_20221231_015PSTA_01.xml**:
-    - S302SNT02 - LOS velocities projected along the maximum slope direction [Gropped per track and AOI]
+    - S302SNT02 - LOS velocities projected along the maximum slope direction [Cropped per track and AOI]
     - 2018-07-01 to 2022-12-31
     - 015PSTA: Track + Region + Orbit Direction
 
