@@ -5,28 +5,44 @@ Written by:  Enrico Ciraci' - February 2024
 Add a JSON STAC file to an existing Geospatial Products (GSP) file
 saved inside a .zip archive.
 
+usage: jstac_from_gsp.py [-h] [-O] [-V] [-P] [-E EPSG] gsp_path
+
+Add a JSON STAC file to an existing Geospatial Products (GSP) file saved
+inside a .zip archive.
+
+positional arguments:
+  gsp_path              Path to the Geospatial Product (GSP) file.
+
+options:
+  -h, --help            show this help message and exit
+  -O, --overwrite       Overwrite existing files.
+  -V, --validate_schema
+                        Validate STAC schema.
+  -P, --print_info      Print generated JSON STAC to std output.
+  -E EPSG, --epsg EPSG  EPSG code for the GSP file.
+
+
 Python Dependencies:
 geopandas: Open source project to make working with geospatial data
     in python easier: https://geopandas.org
-dask_geopandas: Dask-based parallelized geospatial operations
-    for GeoPandas: https://dask-geopandas.readthedocs.io/en/stable/
 pystac: Python library for working with SpatioTemporal Asset Catalogs
     (STAC): https://pystac.readthedocs.io/en/latest/
 """
 # - Python Dependencies
 import os
+import argparse
 from datetime import datetime, timezone, UTC
 import zipfile
 from pathlib import Path
 import dataclasses
-from typing import Tuple
+from typing import Tuple, Dict, Any
 # - Third-Party Dependencies
-import pystac
 import geopandas as gpd
+import pystac
 from pystac.extensions.sar import SarExtension, FrequencyBand, Polarization
 from pystac.extensions.sat import SatExtension, OrbitState
 from pystac.extensions.projection import ProjectionExtension
-
+# - Local Dependencies
 from xml_utils import extract_xml_from_zip
 from iride_utils.aoi_info import get_aoi_info
 from iride_utils.collection_info import collection_info
@@ -81,12 +97,77 @@ class GSP:
         return self.gdf.unary_union.envelope.exterior.coords.xy
 
 
+def return_sensor_info(sensor_tag: str) -> Dict[str, Any]:
+    """
+    Return the Satellite Constellation and Sensor Information give a
+    predefined sensor tag.
+    :param sensor_tag: mission tag
+    :return: Python Dictionary containing sensor information
+    """
+    if sensor_tag in ['SNT', "S1A", "S1B"]:
+        if sensor_tag == "S1A":
+            const = "Sentinel-1"
+            sensor = "Sentinel-1A"
+
+        elif sensor_tag == "S1B":
+            const = "Sentinel-1"
+            sensor = "Sentinel-1B"
+
+        else:
+            const = "Sentinel-1"
+            sensor = "Sentinel-1"
+        band = "C"
+
+    elif sensor_tag in ["CSM", "CSK", "CSG"]:
+        if sensor_tag == "CSG":
+            const = "Cosmo-SkyMed"
+            sensor = "Cosmo-SkyMed Sec-Gen"
+        else:
+            const = "Cosmo-SkyMed"
+            sensor = "Cosmo-SkyMed"
+        band = "X"
+
+    elif sensor_tag in ["SAO"]:
+        const = "SAOCOM"
+        sensor = "SAOCOM"
+        band = "L"
+    else:
+        raise ValueError(f"Unknown sensor tag: {sensor_tag}")
+
+    return {"constellation": const, "sensor": sensor, "band": band}
+
+
 def main() -> None:
+    # - Parse command line arguments
+    parser = argparse.ArgumentParser(
+        description="Add a JSON STAC file to an existing Geospatial Products "
+                    "(GSP) file saved inside a .zip archive."
+    )
+    # - GSP file path
+    parser.add_argument('gsp_path', type=str,
+                        help='Path to the Geospatial Product (GSP) file.')
+    # - Overwrite existing files
+    parser.add_argument('-O', '--overwrite', action='store_true',
+                        help='Overwrite existing files.')
+    # - Validate STAC schema
+    parser.add_argument('-V', '--validate_schema',
+                        action='store_true',  help='Validate STAC schema.')
+    # - Print information
+    parser.add_argument('-P', '--print_info',
+                        action='store_true',
+                        help='Print generated JSON STAC to std output.')
+    # - EPSG code for the GSP file
+    parser.add_argument('-E', '--epsg', type=int, default=4326,
+                        help='EPSG code for the GSP file.')
+    # - Parse the arguments
+    args = parser.parse_args()
+
     # - Set Parameters
-    overwrite = True                # - overwrite existing files
-    validate_schema = True          # - validate STAC schema
+    overwrite = args.overwrite      # - overwrite existing files
+    validate_schema = args.validate_schema          # - validate STAC schema
     print_info = True               # - print information
-    epsg = 4326                     # - EPSG code for the GSP file
+    epsg = args.epsg                  # - EPSG code for the GSP file
+
     collection_id = "ISS_S304SNT02"
     gsp_ext = "shp"       # - extension of the GSP file
 
@@ -133,6 +214,8 @@ def main() -> None:
     product_id = meta_dict['product_id']        # - Product ID [File Name]
     aoi = get_aoi_info(meta_dict['aoi'])['aoi_name']   # - Area of Interest
     collection_title = gsp_description(gsp_id)      # - Collection Title
+    s_info = return_sensor_info(meta_dict['sensor_id'])
+
     # - Geospatial Product Short Description
     collection_s_descr = collection_title
     # - Derive Dataset Collection from GSP ID
@@ -217,11 +300,10 @@ def main() -> None:
     )
 
     # - Add STAC Extensions
-    proj_ext = ProjectionExtension.ext(item, add_if_missing=True)
-    sar_ext = SarExtension.ext(item, add_if_missing=True)
-    sat_ext = SatExtension.ext(item, add_if_missing=True)
+    _ = ProjectionExtension.ext(item, add_if_missing=True)
+    _ = SarExtension.ext(item, add_if_missing=True)
+    _ = SatExtension.ext(item, add_if_missing=True)
 
-    #TODO: updated these lines
     item.properties["gsp_id"] = gsp_id
     item.properties["product_id"] = product_id
     item.properties["description"] = collection_s_descr
@@ -230,15 +312,15 @@ def main() -> None:
         = start_date.replace(tzinfo=timezone.utc).isoformat()
     item.properties["end_datetime"] \
         = end_date.replace(tzinfo=timezone.utc).isoformat()
-    item.properties["constellation"] = "Sentinel-1"
-    item.properties["platform"] = "Sentinel-1A"
-    item.properties["license"] = "TBD"
-    item.properties["proj:epsg"] = 4326
-    item.properties["sat:orbit_state"] = "descending"
-    item.properties["sar:frequency_band"] = FrequencyBand("C")
-    item.properties["sar:polarizations"] \
-        = [Polarization("VV"), Polarization("VH")]
-    item.properties["sar:instrument_mode"] = "IW"
+    item.properties["constellation"] = s_info["constellation"]
+    item.properties["platform"] = s_info["sensor"]
+    # item.properties["license"] = "TBD"
+    item.properties["proj:epsg"] = epsg
+    item.properties["sat:orbit_state"] = OrbitState("descending")
+    item.properties["sar:frequency_band"] = FrequencyBand(s_info["band"])
+    # item.properties["sar:polarizations"] \
+    #     = [Polarization("VV"), Polarization("VH")]
+    # item.properties["sar:instrument_mode"] = "IW"
     item.properties["sar:product_type"] = "SLC"
     item.properties["providers"] = [{"name": "eGeos",
                                      "roles": ["producer", "processor"],
