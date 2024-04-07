@@ -72,6 +72,9 @@ PROC_TIME = proc_datetime = datetime(2024, 3, 15, 0, 0, 0, 0, timezone.utc)
 
 
 class ZipHandler:
+    """
+    Class to handle zip archives.
+    """
     @staticmethod
     def update_zip(zip_name: str, file_name: str) -> None:
         """
@@ -118,16 +121,22 @@ class ZipHandler:
 
 @dataclasses.dataclass
 class GSP:
+    """
+    Class to handle Geospatial Products (GSP) files.
+    """
     gdf: gpd.GeoDataFrame = dataclasses.field(default=None, init=False)
     epsg: int = dataclasses.field(default=4326, init=False)
 
     def load_gsp(self, gsp_path: str | Path, epsg: int = 4326) -> None:
+        """Import a Geospatial Product (GSP) file."""
         self.gdf = gpd.read_file(gsp_path).to_crs(epsg=epsg)
 
     def get_bounds(self) -> Tuple[float, float, float, float]:
+        """Return the bounding box of the GSP file."""
         return self.gdf.total_bounds
 
     def get_envelope(self) -> Tuple[float]:
+        """Return the envelope of the GSP file."""
         return self.gdf.unary_union.envelope.exterior.coords.xy
 
 
@@ -176,6 +185,7 @@ def return_sensor_info(sensor_tag: str) -> Dict[str, Any]:
 
 
 def main() -> None:
+    """Main program."""
     # - Parse command line arguments
     parser = argparse.ArgumentParser(
         description="Add a JSON STAC file to an existing Geospatial Products "
@@ -202,7 +212,7 @@ def main() -> None:
     parser.add_argument('-G', '--gsp_ext', type=str, default='shp',
                         help='Geospatial Product Extension.',
                         choices=['shp', 'csv', 'geojson', 'gpkg', 'parquet',
-                                 'tif', 'tiff']),
+                                 'tif', 'tiff'])
     # - Parse the arguments
     args = parser.parse_args()
 

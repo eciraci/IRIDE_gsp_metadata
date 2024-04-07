@@ -9,3 +9,5 @@ dependencies:
   - geopandas
   - pystac
   - dask_geopandas
+  - pylint
+  - flake8
