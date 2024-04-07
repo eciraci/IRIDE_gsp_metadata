@@ -4,11 +4,16 @@ Written by:  Enrico Ciraci' - February 2024
 
 Add a JSON STAC file to an existing Geospatial Products (GSP) file
 saved inside a .zip archive.
+The archive may contain a Geospatial Product (GSP) file in one of the
+following formats: 'shp', 'csv', 'geojson', 'gpkg', 'parquet', 'tif'.
+An associated XML metadata file is also expected to be present in the
+archive.
 
-usage: jstac_from_gsp.py [-h] [-O] [-V] [-P] [-E EPSG] gsp_path
+usage: jstac_from_gsp.py [-h] [-O] [-V] [-P] [-E EPSG]
+    [-G {shp,csv,geojson,gpkg,parquet,tif,tiff}] gsp_path
 
-Add a JSON STAC file to an existing Geospatial Products (GSP) file saved
-inside a .zip archive.
+Add a JSON STAC file to an existing Geospatial Products (GSP)
+file saved inside a .zip archive.
 
 positional arguments:
   gsp_path              Path to the Geospatial Product (GSP) file.
@@ -20,6 +25,8 @@ options:
                         Validate STAC schema.
   -P, --print_info      Print generated JSON STAC to std output.
   -E EPSG, --epsg EPSG  EPSG code for the GSP file.
+  -G {shp,csv,geojson,gpkg,parquet,tif,tiff}, --gsp_ext {shp,csv,geojson,
+        gpkg,parquet,tif,tiff} Geospatial Product Extension.
 
 
 Python Dependencies:
@@ -27,11 +34,21 @@ geopandas: Open source project to make working with geospatial data
     in python easier: https://geopandas.org
 pystac: Python library for working with SpatioTemporal Asset Catalogs
     (STAC): https://pystac.readthedocs.io/en/latest/
+shapely: Python package for manipulation and analysis of planar geometric
+    objects: https://pypi.org/project/Shapely/
+fiona: Fiona is OGR's neat, nimble, no-nonsense API for Python
+    programmers: https://pypi.org/project/Fiona/
+pyproj: Python interface to PROJ (cartographic projections and
+    coordinate transformations library): https://pypi.org/project/pyproj/
+xmltodict: Python module that makes working with XML feel like you are
+    working with JSON: https://pypi.org/project/xmltodict/
+lxml: Pythonic binding for the C libraries libxml2 and libxslt:
+    https://pypi.org/project/lxml/
 """
 # - Python Dependencies
 import os
 import argparse
-from datetime import datetime, timezone, UTC
+from datetime import datetime, timezone
 import zipfile
 from pathlib import Path
 import dataclasses
@@ -54,46 +71,72 @@ from iride_utils.gsp_description import gsp_description
 PROC_TIME = proc_datetime = datetime(2024, 3, 15, 0, 0, 0, 0, timezone.utc)
 
 
-def update_zip(zip_name: str, file_name: str) -> None:
+class ZipHandler:
     """
-    Update a file inside a zip archive
-    :param zip_name: absolute path to the zip file
-    :param file_name: absolute path to the file to be added
-    :return: None
+    Class to handle zip archives.
     """
-    # - generate a temporary copy of the input zip file
-    temp_zip = zip_name.replace('.zip', '_temp.zip')
+    @staticmethod
+    def update_zip(zip_name: str, file_name: str) -> None:
+        """
+        Update a file inside a zip archive
+        :param zip_name: absolute path to the zip file
+        :param file_name: absolute path to the file to be added
+        :return: None
+        """
+        # - generate a temporary copy of the input zip file
+        temp_zip = zip_name.replace('.zip', '_temp.zip')
 
-    # - read zip archive content
-    with zipfile.ZipFile(zip_name, 'r') as zin:
-        with zipfile.ZipFile(temp_zip, 'w') as zout:
-            zout.comment = zin.comment      # - preserve zip comment
-            for item in zin.infolist():
-                if item.filename != os.path.basename(file_name):
-                    # - Copy all other files to the new archive
-                    zout.writestr(item.filename, zin.read(item.filename))
-    # - Replace original archive with the temp archive
-    os.remove(zip_name)
-    os.rename(temp_zip, zip_name)
+        # - read zip archive content
+        with zipfile.ZipFile(zip_name, 'r') as zin:
+            with zipfile.ZipFile(temp_zip, 'w') as zout:
+                zout.comment = zin.comment      # - preserve zip comment
+                for item in zin.infolist():
+                    if item.filename != os.path.basename(file_name):
+                        # - Copy all other files to the new archive
+                        zout.writestr(item.filename, zin.read(item.filename))
+        # - Replace original archive with the temp archive
+        os.remove(zip_name)
+        os.rename(temp_zip, zip_name)
 
-    # Add the new file with its new data
-    with zipfile.ZipFile(zip_name, mode='a',
-                         compression=zipfile.ZIP_DEFLATED) as zf:
-        zf.write(file_name, os.path.basename(file_name))
+        # Add the new file with its new data
+        with zipfile.ZipFile(zip_name, mode='a',
+                             compression=zipfile.ZIP_DEFLATED) as zf:
+            zf.write(file_name, os.path.basename(file_name))
+
+    @staticmethod
+    def check_file_in_zip(zip_path: str, file_format: str) -> bool:
+        """
+        Check if a zip archive contains a file saved in a specified format.
+        :param zip_path: Path to the zip file.
+        :param file_format: The file format to check for.
+        :return: True if a file of the specified format is found,
+            False otherwise.
+        """
+        with zipfile.ZipFile(zip_path, 'r') as zipf:
+            for file in zipf.namelist():
+                if file.endswith(file_format):
+                    return True
+        return False
 
 
 @dataclasses.dataclass
 class GSP:
+    """
+    Class to handle Geospatial Products (GSP) files.
+    """
     gdf: gpd.GeoDataFrame = dataclasses.field(default=None, init=False)
     epsg: int = dataclasses.field(default=4326, init=False)
 
     def load_gsp(self, gsp_path: str | Path, epsg: int = 4326) -> None:
+        """Import a Geospatial Product (GSP) file."""
         self.gdf = gpd.read_file(gsp_path).to_crs(epsg=epsg)
 
     def get_bounds(self) -> Tuple[float, float, float, float]:
+        """Return the bounding box of the GSP file."""
         return self.gdf.total_bounds
 
     def get_envelope(self) -> Tuple[float]:
+        """Return the envelope of the GSP file."""
         return self.gdf.unary_union.envelope.exterior.coords.xy
 
 
@@ -117,27 +160,32 @@ def return_sensor_info(sensor_tag: str) -> Dict[str, Any]:
             const = "Sentinel-1"
             sensor = "Sentinel-1"
         band = "C"
+        polarization = ["HH", "HV"]
 
     elif sensor_tag in ["CSM", "CSK", "CSG"]:
         if sensor_tag == "CSG":
-            const = "Cosmo-SkyMed"
-            sensor = "Cosmo-SkyMed Sec-Gen"
+            const = "COSMO-SkyMed"
+            sensor = "COSMO-SkyMed Sec-Gen"
         else:
-            const = "Cosmo-SkyMed"
-            sensor = "Cosmo-SkyMed"
+            const = "COSMO-SkyMed"
+            sensor = "COSMO-SkyMed"
         band = "X"
+        polarization = ["HH", "HV"]
 
     elif sensor_tag in ["SAO"]:
         const = "SAOCOM"
         sensor = "SAOCOM"
         band = "L"
+        polarization = ["HH", "HV"]
     else:
         raise ValueError(f"Unknown sensor tag: {sensor_tag}")
 
-    return {"constellation": const, "sensor": sensor, "band": band}
+    return {"constellation": const, "sensor": sensor,
+            "band": band, "polarization": polarization}
 
 
 def main() -> None:
+    """Main program."""
     # - Parse command line arguments
     parser = argparse.ArgumentParser(
         description="Add a JSON STAC file to an existing Geospatial Products "
@@ -159,6 +207,12 @@ def main() -> None:
     # - EPSG code for the GSP file
     parser.add_argument('-E', '--epsg', type=int, default=4326,
                         help='EPSG code for the GSP file.')
+    # - Geospatial Product Extension
+    # - By default, the GSP file extension is set to 'shp'
+    parser.add_argument('-G', '--gsp_ext', type=str, default='shp',
+                        help='Geospatial Product Extension.',
+                        choices=['shp', 'csv', 'geojson', 'gpkg', 'parquet',
+                                 'tif', 'tiff'])
     # - Parse the arguments
     args = parser.parse_args()
 
@@ -166,16 +220,39 @@ def main() -> None:
     overwrite = args.overwrite      # - overwrite existing files
     validate_schema = args.validate_schema          # - validate STAC schema
     print_info = True               # - print information
-    epsg = args.epsg                  # - EPSG code for the GSP file
-
-    collection_id = "ISS_S304SNT02"
-    gsp_ext = "shp"       # - extension of the GSP file
+    epsg = args.epsg                # - EPSG code for the GSP file
+    gsp_ext = args.gsp_ext          # - extension of the GSP file
 
     # - Path to sample GSP
-    data_dir = os.path.join(os.path.expanduser('~'), 'Desktop',
-                            'Scripts', 'lot2')
+    data_dir = Path(args.gsp_path).parent
+    print(f"# - Data Directory: {data_dir}")
+    # - File Name with extension
+    gsp_file = Path(args.gsp_path).name
+    # - File Name without extension
+    gsp_name = Path(args.gsp_path).stem
+    print(f"# - GSP Name: {gsp_name}")
     # - GSP file name - equivalent to product_id in the XML metadata file
-    item_id = 'ISS_S304SNT03_20180701_20230623_044BRNA_01'
+    item_id = gsp_name
+    # - Collection ID
+    collection_id = "ISS_" + item_id.split("_")[0]
+
+    #  - If in put file is not zip raise an error
+    if not gsp_file.endswith('.zip'):
+        raise ValueError("Input file must be a zip archive.")
+
+    # - Check if the GSP file is in the zip archive
+    try:
+        # - Check if the GSP file is in the zip archive
+        if not ZipHandler.check_file_in_zip(args.gsp_path, gsp_ext):
+            raise ValueError(f"File with extension {gsp_ext} not found "
+                             f"in the zip archive.")
+    except ValueError as e:
+        print(f"# - ValueError {str(e)}")
+        with zipfile.ZipFile(args.gsp_path, 'r') as zipf:
+            print("# - Contents of the zip file:")
+            for file in zipf.namelist():
+                print(f"# - {file}")
+        return
 
     zip_path = os.path.join(data_dir,  f'{item_id}.zip')
     gsp_path = os.path.join(data_dir, f'{item_id}.zip!{item_id}.{gsp_ext}')
@@ -210,10 +287,10 @@ def main() -> None:
 
     # - Read XML Metadata
     meta_dict = extract_xml_from_zip(zip_path)[0]
-    gsp_id = meta_dict['gsp_id']    # - GPS ID [TD3 ID]
+    gsp_id = meta_dict['gsp_id']                # - GPS ID [TD3 ID]
     product_id = meta_dict['product_id']        # - Product ID [File Name]
     aoi = get_aoi_info(meta_dict['aoi'])['aoi_name']   # - Area of Interest
-    collection_title = gsp_description(gsp_id)      # - Collection Title
+    collection_title = gsp_description(gsp_id)         # - Collection Title
     s_info = return_sensor_info(meta_dict['sensor_id'])
 
     # - Geospatial Product Short Description
@@ -280,7 +357,7 @@ def main() -> None:
         "GSP",
         asset=pystac.Asset(
             href=f"./{item_id}.{gsp_ext}",
-            media_type="application/{gsp_ext}",
+            media_type=f"application/{gsp_ext}",
             title=f"Lot 2 Geospatial Product: {item.id}",
             description=collection_s_descr,
             roles=["data", "visual"],
@@ -314,12 +391,12 @@ def main() -> None:
         = end_date.replace(tzinfo=timezone.utc).isoformat()
     item.properties["constellation"] = s_info["constellation"]
     item.properties["platform"] = s_info["sensor"]
-    # item.properties["license"] = "TBD"
+    item.properties["license"] = "proprietary"
     item.properties["proj:epsg"] = epsg
     item.properties["sat:orbit_state"] = OrbitState("descending")
     item.properties["sar:frequency_band"] = FrequencyBand(s_info["band"])
-    # item.properties["sar:polarizations"] \
-    #     = [Polarization("VV"), Polarization("VH")]
+    item.properties["sar:polarizations"] \
+        = [Polarization(x) for x in s_info["polarization"]]
     # item.properties["sar:instrument_mode"] = "IW"
     item.properties["sar:product_type"] = "SLC"
     item.properties["providers"] = [{"name": "eGeos",
@@ -355,16 +432,21 @@ def main() -> None:
     if (f"{item_id}.json" in zip_names and overwrite)\
             or (f"{item_id}.json" not in zip_names):
         # - Update the zip archive
-        # - Item JSON file
-        update_zip(os.path.join(data_dir,  f'{item_id}.zip'),
-                   os.path.join(data_dir, f"{item_id}.json"))
-        # - Collection JSON file
-        update_zip(os.path.join(data_dir,  f'{item_id}.zip'),
-                   os.path.join(data_dir, "collection.json"))
+        # - 1. Item JSON file
+        # - 2. Collection JSON file
+        def update_zip_file(data_dir: str | Path, item_id: str,
+                            file_name: str) -> None:
+            zip_file_path = os.path.join(data_dir, f'{item_id}.zip')
+            file_path = os.path.join(data_dir, file_name)
+            ZipHandler.update_zip(zip_file_path, file_path)
+
+        # Then you can call this function like this:
+        update_zip_file(data_dir, item_id, f"{item_id}.json")
+        update_zip_file(data_dir, item_id, "collection.json")
 
     # - Remove temporary JSON files
-    # os.remove(os.path.join(data_dir, f"{item_id}.json"))
-    # os.remove(os.path.join(data_dir, "collection.json"))
+    os.remove(os.path.join(data_dir, f"{item_id}.json"))
+    os.remove(os.path.join(data_dir, "collection.json"))
 
 
 # - run main program
