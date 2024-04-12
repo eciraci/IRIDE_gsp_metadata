@@ -51,10 +51,8 @@ import argparse
 from datetime import datetime, timezone
 import zipfile
 from pathlib import Path
-import dataclasses
 from typing import Tuple, Dict, Any
 # - Third-Party Dependencies
-import geopandas as gpd
 import pystac
 from pystac.extensions.sar import SarExtension, FrequencyBand, Polarization
 from pystac.extensions.sat import SatExtension, OrbitState
@@ -64,6 +62,7 @@ from xml_utils import extract_xml_from_zip
 from iride_utils.aoi_info import get_aoi_info
 from iride_utils.collection_info import collection_info
 from iride_utils.gsp_description import gsp_description
+from GSP import VectorGSP, RasterGSP
 
 # - Set Processing Time as a constant
 # - For the first IRIDE data release, set this value equal to
@@ -119,27 +118,6 @@ class ZipHandler:
         return False
 
 
-@dataclasses.dataclass
-class GSP:
-    """
-    Class to handle Geospatial Products (GSP) files.
-    """
-    gdf: gpd.GeoDataFrame = dataclasses.field(default=None, init=False)
-    epsg: int = dataclasses.field(default=4326, init=False)
-
-    def load_gsp(self, gsp_path: str | Path, epsg: int = 4326) -> None:
-        """Import a Geospatial Product (GSP) file."""
-        self.gdf = gpd.read_file(gsp_path).to_crs(epsg=epsg)
-
-    def get_bounds(self) -> Tuple[float, float, float, float]:
-        """Return the bounding box of the GSP file."""
-        return self.gdf.total_bounds
-
-    def get_envelope(self) -> Tuple[float]:
-        """Return the envelope of the GSP file."""
-        return self.gdf.unary_union.envelope.exterior.coords.xy
-
-
 def return_sensor_info(sensor_tag: str) -> Dict[str, Any]:
     """
     Return the Satellite Constellation and Sensor Information give a
@@ -184,6 +162,26 @@ def return_sensor_info(sensor_tag: str) -> Dict[str, Any]:
             "band": band, "polarization": polarization}
 
 
+def split_date(date: str) -> Tuple[str, str, str]:
+    """
+    Split the date string into year, month, and day
+    :param date: date string in the format YYYYMMDD
+    :return: Tuple of strings (year, month, day)
+    """
+    # - Check if the date is in the format: DD/MM/YYYY
+    if '/' in date:
+        s_date = date.split('/')
+        s_yyyy = s_date[2]
+        s_mm = s_date[1]
+        s_dd = s_date[0]
+    else:
+        s_yyyy = date[:4]
+        s_mm = date[4:6]
+        s_dd = date[6:]
+
+    return s_yyyy, s_mm, s_dd
+
+
 def main() -> None:
     """Main program."""
     # - Parse command line arguments
@@ -209,10 +207,9 @@ def main() -> None:
                         help='EPSG code for the GSP file.')
     # - Geospatial Product Extension
     # - By default, the GSP file extension is set to 'shp'
-    parser.add_argument('-G', '--gsp_ext', type=str, default='shp',
-                        help='Geospatial Product Extension.',
-                        choices=['shp', 'csv', 'geojson', 'gpkg', 'parquet',
-                                 'tif', 'tiff'])
+    parser.add_argument('-G', '--gsp_ext', type=str,
+                        default='shp', help='Geospatial Product Extension.',
+                        choices=['shp', 'csv', 'tif', 'tiff'])
     # - Parse the arguments
     args = parser.parse_args()
 
@@ -234,17 +231,17 @@ def main() -> None:
     # - GSP file name - equivalent to product_id in the XML metadata file
     item_id = gsp_name
     # - Collection ID
-    collection_id = "ISS_" + item_id.split("_")[0]
+    collection_id = "ISS_" + item_id.split("_")[1]
 
     #  - If in put file is not zip raise an error
     if not gsp_file.endswith('.zip'):
-        raise ValueError("Input file must be a zip archive.")
+        raise ValueError("# - Input file must be a zip archive.")
 
     # - Check if the GSP file is in the zip archive
     try:
         # - Check if the GSP file is in the zip archive
         if not ZipHandler.check_file_in_zip(args.gsp_path, gsp_ext):
-            raise ValueError(f"File with extension {gsp_ext} not found "
+            raise ValueError(f"# - File with extension {gsp_ext} not found "
                              f"in the zip archive.")
     except ValueError as e:
         print(f"# - ValueError {str(e)}")
@@ -254,27 +251,35 @@ def main() -> None:
                 print(f"# - {file}")
         return
 
-    zip_path = os.path.join(data_dir,  f'{item_id}.zip')
-    gsp_path = os.path.join(data_dir, f'{item_id}.zip!{item_id}.{gsp_ext}')
+    gsp_path = os.path.join(data_dir,  f'{item_id}.zip')
 
     print(f"# - GSP Path: {gsp_path}")
     print('# - Loading GSP...')
 
-    # - Load GSP
+    # - Load GSP - Vector Data
     s_time = datetime.now()
-    gdf_smp = GSP()
-    gdf_smp.load_gsp(gsp_path, epsg=epsg)
+    if gsp_ext in ['shp', 'csv']:
+        gdf_smp = VectorGSP()
+        gdf_smp.load_gsp(gsp_path)
+    elif gsp_ext in ['tif', 'tiff']:
+        gdf_smp = RasterGSP()
+
+        # Construct the path to the zip file
+        zip_path = Path(gsp_path).resolve()
+
+        # Construct the path to the file inside the zip archive
+        raster_path = f'zip+file://{zip_path.as_posix()}!{gsp_name}.{gsp_ext}'
+        gdf_smp.load_gsp(raster_path)
+    else:
+        raise ValueError(f"# - Unsupported GSP file format: {gsp_ext}")
 
     # - Convert To GeoPandas DataFrame
-    xmin, ymin, xmax, ymax = gdf_smp.get_bounds()
+    xmin, ymin, xmax, ymax = gdf_smp.get_bbox()
     # - Set Bounding Box
     bbox = [xmin, ymin, xmax, ymax]
 
     # - Extract dataset envelope polygon
-    envelope = gdf_smp.get_envelope()
-    xs = list(envelope[0])
-    ys = list(envelope[1])
-    crd = list(zip(xs, ys))
+    crd = gdf_smp.get_envelope()
     # - Express GPS envelope as a GeoJSON geometry
     env_geometry = {
         "type": "Polygon",
@@ -286,12 +291,13 @@ def main() -> None:
     print(f"# - Dataframe Loading  Time: {e_time - s_time}")
 
     # - Read XML Metadata
-    meta_dict = extract_xml_from_zip(zip_path)[0]
+    meta_dict = extract_xml_from_zip(gsp_path)[0]
     gsp_id = meta_dict['gsp_id']                # - GPS ID [TD3 ID]
     product_id = meta_dict['product_id']        # - Product ID [File Name]
     aoi = get_aoi_info(meta_dict['aoi'])['aoi_name']   # - Area of Interest
     collection_title = gsp_description(gsp_id)         # - Collection Title
-    s_info = return_sensor_info(meta_dict['sensor_id'])
+    if gsp_ext in ['shp', 'csv']:
+        s_info = return_sensor_info(meta_dict['sensor_id'])
 
     # - Geospatial Product Short Description
     collection_s_descr = collection_title
@@ -301,15 +307,12 @@ def main() -> None:
     # - Extract Start and End Dates and convert the into datetime objects
     # - Note: dates from the XML metadata are in the format: YYYYMMDD
     # -       convert them to YYYY-MM-ddT00:00:00Z format.
-    s_yyyy = meta_dict['start_date'][:4]
-    s_mm = meta_dict['start_date'][4:6]
-    s_dd = meta_dict['start_date'][6:]
+    s_yyyy, s_mm, s_dd = split_date(meta_dict['start_date'])
     start_date \
         = datetime.strptime(f"{s_yyyy}-{s_mm}-{s_dd}T00:00:00Z",
                             '%Y-%m-%dT00:00:00Z')
-    e_yyyy = meta_dict['end_date'][:4]
-    e_mm = meta_dict['end_date'][4:6]
-    e_dd = meta_dict['end_date'][6:]
+    # - Extract End Date
+    e_yyyy, e_mm, e_dd = split_date(meta_dict['end_date'])
     end_date \
         = datetime.strptime(f"{e_yyyy}-{e_mm}-{e_dd}T00:00:00Z",
                             '%Y-%m-%dT00:00:00Z')
@@ -378,8 +381,9 @@ def main() -> None:
 
     # - Add STAC Extensions
     _ = ProjectionExtension.ext(item, add_if_missing=True)
-    _ = SarExtension.ext(item, add_if_missing=True)
-    _ = SatExtension.ext(item, add_if_missing=True)
+    if gsp_id not in ["S3-HRDEM-DSM-01", "S3-HRDEM-DTM-01"]:
+        _ = SarExtension.ext(item, add_if_missing=True)
+        _ = SatExtension.ext(item, add_if_missing=True)
 
     item.properties["gsp_id"] = gsp_id
     item.properties["product_id"] = product_id
@@ -389,16 +393,19 @@ def main() -> None:
         = start_date.replace(tzinfo=timezone.utc).isoformat()
     item.properties["end_datetime"] \
         = end_date.replace(tzinfo=timezone.utc).isoformat()
-    item.properties["constellation"] = s_info["constellation"]
-    item.properties["platform"] = s_info["sensor"]
-    item.properties["license"] = "proprietary"
-    item.properties["proj:epsg"] = epsg
-    item.properties["sat:orbit_state"] = OrbitState("descending")
-    item.properties["sar:frequency_band"] = FrequencyBand(s_info["band"])
-    item.properties["sar:polarizations"] \
-        = [Polarization(x) for x in s_info["polarization"]]
-    # item.properties["sar:instrument_mode"] = "IW"
-    item.properties["sar:product_type"] = "SLC"
+
+    if gsp_id not in ["S3-HRDEM-DSM-01", "S3-HRDEM-DTM-01"]:
+        item.properties["constellation"] = s_info["constellation"]
+        item.properties["platform"] = s_info["sensor"]
+        item.properties["license"] = "proprietary"
+        item.properties["proj:epsg"] = epsg
+
+        item.properties["sat:orbit_state"] = OrbitState("descending")
+        item.properties["sar:frequency_band"] = FrequencyBand(s_info["band"])
+        item.properties["sar:polarizations"] \
+            = [Polarization(x) for x in s_info["polarization"]]
+        # item.properties["sar:instrument_mode"] = "IW"
+        item.properties["sar:product_type"] = "SLC"
     item.properties["providers"] = [{"name": "eGeos",
                                      "roles": ["producer", "processor"],
                                      "url": "https://www.e-geos.it/"}
@@ -429,20 +436,20 @@ def main() -> None:
         zip_names = zipf.namelist()
 
     # - Add JSON STAC file to the zip archive
-    if (f"{item_id}.json" in zip_names and overwrite)\
-            or (f"{item_id}.json" not in zip_names):
-        # - Update the zip archive
-        # - 1. Item JSON file
-        # - 2. Collection JSON file
-        def update_zip_file(data_dir: str | Path, item_id: str,
-                            file_name: str) -> None:
-            zip_file_path = os.path.join(data_dir, f'{item_id}.zip')
-            file_path = os.path.join(data_dir, file_name)
-            ZipHandler.update_zip(zip_file_path, file_path)
-
-        # Then you can call this function like this:
-        update_zip_file(data_dir, item_id, f"{item_id}.json")
-        update_zip_file(data_dir, item_id, "collection.json")
+    # if (f"{item_id}.json" in zip_names and overwrite)\
+    #         or (f"{item_id}.json" not in zip_names):
+    #     # - Update the zip archive
+    #     # - 1. Item JSON file
+    #     # - 2. Collection JSON file
+    #     def update_zip_file(data_dir: str | Path, item_id: str,
+    #                         file_name: str) -> None:
+    #         zip_file_path = os.path.join(data_dir, f'{item_id}.zip')
+    #         file_path = os.path.join(data_dir, file_name)
+    #         ZipHandler.update_zip(zip_file_path, file_path)
+    #
+    #     # Then you can call this function like this:
+    #     update_zip_file(data_dir, item_id, f"{item_id}.json")
+    #     update_zip_file(data_dir, item_id, "collection.json")
 
     # - Remove temporary JSON files
     os.remove(os.path.join(data_dir, f"{item_id}.json"))
