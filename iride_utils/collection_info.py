@@ -109,7 +109,8 @@ def collection_info(gsp_id: str) -> str:
                 "crisis period supports the detection of areas "
                 "covered by the lava flow.")
 
-    elif gsp_id.startswith('DSM') or gsp_id.startswith('DTM'):
+    elif gsp_id.startswith('DSM') or gsp_id.startswith('DTM') or \
+            gsp_id.startswith('S3-HRDEM'):
         # - Service Value Chain: DSM-DTM
         # - High-Resolution Digital Surface Model (DSM)
         # -  and a Digital Terrain Model (DTM)
