@@ -11,3 +11,4 @@ dependencies:
   - dask_geopandas
   - pylint
   - flake8
+  - rasterio
