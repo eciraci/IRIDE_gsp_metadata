@@ -296,7 +296,10 @@ def main() -> None:
     meta_dict = extract_xml_from_zip(gsp_path)[0]
     gsp_id = meta_dict['gsp_id']                # - GPS ID [TD3 ID]
     product_id = meta_dict['product_id']        # - Product ID [File Name]
-    aoi = get_aoi_info(meta_dict['aoi'])['aoi_name']   # - Area of Interest
+    # - Area of Interest
+    aoi = get_aoi_info(meta_dict.get('aoi') or \
+                       meta_dict.get('aoi_id'))['aoi_name']
+
     collection_title = gsp_description(gsp_id)         # - Collection Title
     if gsp_ext in ['shp', 'csv']:
         s_info = return_sensor_info(meta_dict['sensor_id'])
