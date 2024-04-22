@@ -50,6 +50,7 @@ import os
 import argparse
 from datetime import datetime, timezone
 import zipfile
+import tempfile
 from pathlib import Path
 from typing import Tuple, Dict, Any
 # - Third-Party Dependencies
@@ -79,25 +80,26 @@ class ZipHandler:
         """
         Update a file inside a zip archive
         :param zip_name: absolute path to the zip file
-        :param file_name: absolute path to the file to be added
+        :param file_name: absolute path to the file to be addedSS
         :return: None
         """
-        # - generate a temporary copy of the input zip file
-        temp_zip = zip_name.replace('.zip', '_temp.zip')
+        # - Generate temporary file name
+        tmpfd, tmpname = tempfile.mkstemp(dir=os.path.dirname(zip_name))
+        os.close(tmpfd)
 
-        # - read zip archive content
-        with zipfile.ZipFile(zip_name, 'r') as zin:
-            with zipfile.ZipFile(temp_zip, 'w') as zout:
-                zout.comment = zin.comment      # - preserve zip comment
-                for item in zin.infolist():
+        # - create a temp copy of the archive without filename
+        with zipfile.ZipFile(zip_name, 'r') as z_in:
+            with zipfile.ZipFile(tmpname, 'w') as z_out:
+                z_out.comment = z_in.comment     # - preserve the comment
+                for item in z_in.infolist():
                     if item.filename != os.path.basename(file_name):
                         # - Copy all other files to the new archive
-                        zout.writestr(item.filename, zin.read(item.filename))
-        # - Replace original archive with the temp archive
+                        z_out.writestr(item, z_in.read(item.filename))
+        # - Replace the temporary archive with the original
         os.remove(zip_name)
-        os.rename(temp_zip, zip_name)
+        os.rename(tmpname, zip_name)
 
-        # Add the new file with its new data
+        # - Add the new file with its new data
         with zipfile.ZipFile(zip_name, mode='a',
                              compression=zipfile.ZIP_DEFLATED) as zf:
             zf.write(file_name, os.path.basename(file_name))
@@ -237,12 +239,12 @@ def main() -> None:
     if not gsp_file.endswith('.zip'):
         raise ValueError("# - Input file must be a zip archive.")
 
-    # - Check if the GSP file is in the zip archive
+    # - Check if the GSP file saved with the chose extension
+    # - is present inside the zip archive
     try:
-        # - Check if the GSP file is in the zip archive
         if not ZipHandler.check_file_in_zip(args.gsp_path, gsp_ext):
             raise ValueError(f"# - File with extension {gsp_ext} not found "
-                             f"in the zip archive.")
+                             f"inside the zip archive.")
     except ValueError as e:
         print(f"# - ValueError {str(e)}")
         with zipfile.ZipFile(args.gsp_path, 'r') as zipf:
@@ -264,10 +266,10 @@ def main() -> None:
     elif gsp_ext in ['tif', 'tiff']:
         gdf_smp = RasterGSP()
 
-        # Construct the path to the zip file
+        # - Construct the path to the zip file
         zip_path = Path(gsp_path).resolve()
 
-        # Construct the path to the file inside the zip archive
+        # - Construct the path to the file inside the zip archive
         raster_path = f'zip+file://{zip_path.as_posix()}!{gsp_name}.{gsp_ext}'
         gdf_smp.load_gsp(raster_path)
     else:
@@ -298,6 +300,9 @@ def main() -> None:
     collection_title = gsp_description(gsp_id)         # - Collection Title
     if gsp_ext in ['shp', 'csv']:
         s_info = return_sensor_info(meta_dict['sensor_id'])
+    else:
+        # - Raster Data - No sensor info needed
+        s_info = ''
 
     # - Geospatial Product Short Description
     collection_s_descr = collection_title
@@ -431,26 +436,19 @@ def main() -> None:
     pystac.write_file(obj=item, include_self_link=False,
                       dest_href=os.path.join(data_dir, f"{item_id}.json"))
 
-    with zipfile.ZipFile(os.path.join(data_dir, f'{item_id}.zip'),
-                         'r') as zipf:
-        zip_names = zipf.namelist()
+    # - If the considered geospatial products belongs to the RasterGSP class
+    # - close the raster file before proceeding.
+    if isinstance(gdf_smp, RasterGSP):
+        gdf_smp.close()
 
     # - Add JSON STAC file to the zip archive
-    # if (f"{item_id}.json" in zip_names and overwrite)\
-    #         or (f"{item_id}.json" not in zip_names):
-    #     # - Update the zip archive
-    #     # - 1. Item JSON file
-    #     # - 2. Collection JSON file
-    #     def update_zip_file(data_dir: str | Path, item_id: str,
-    #                         file_name: str) -> None:
-    #         zip_file_path = os.path.join(data_dir, f'{item_id}.zip')
-    #         file_path = os.path.join(data_dir, file_name)
-    #         ZipHandler.update_zip(zip_file_path, file_path)
-    #
-    #     # Then you can call this function like this:
-    #     update_zip_file(data_dir, item_id, f"{item_id}.json")
-    #     update_zip_file(data_dir, item_id, "collection.json")
-
+    # - 1. Item JSON file
+    # - 2. Collection JSON file
+    # - Then you can call this function like this:
+    ZipHandler.update_zip(os.path.join(data_dir, f'{item_id}.zip'),
+                          os.path.join(data_dir, f"{item_id}.json"))
+    ZipHandler.update_zip(os.path.join(data_dir, f'{item_id}.zip'),
+                          os.path.join(data_dir, "collection.json"))
     # - Remove temporary JSON files
     os.remove(os.path.join(data_dir, f"{item_id}.json"))
     os.remove(os.path.join(data_dir, "collection.json"))

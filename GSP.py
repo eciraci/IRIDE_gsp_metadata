@@ -136,3 +136,8 @@ class RasterGSP(AbstractGSP):
         envelope = [(xmin, ymin), (xmin, ymax), (xmax, ymax),
                     (xmax, ymin), (xmin, ymin)]
         return envelope
+
+    def close(self) -> None:
+        """Close the raster file."""
+        self.raster.close()
+        self.raster = None
