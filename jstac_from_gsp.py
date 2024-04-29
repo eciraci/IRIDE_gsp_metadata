@@ -20,7 +20,6 @@ positional arguments:
 
 options:
   -h, --help            show this help message and exit
-  -O, --overwrite       Overwrite existing files.
   -V, --validate_schema
                         Validate STAC schema.
   -P, --print_info      Print generated JSON STAC to std output.
@@ -194,9 +193,11 @@ def main() -> None:
     # - GSP file path
     parser.add_argument('gsp_path', type=str,
                         help='Path to the Geospatial Product (GSP) file.')
-    # - Overwrite existing files
-    parser.add_argument('-O', '--overwrite', action='store_true',
-                        help='Overwrite existing files.')
+    # - Geospatial Product Extension
+    # - By default, the GSP file extension is set to 'shp'
+    parser.add_argument('-G', '--gsp_ext', type=str,
+                        default='shp', help='Geospatial Product Extension.',
+                        choices=['shp', 'csv', 'tif', 'tiff'])
     # - Validate STAC schema
     parser.add_argument('-V', '--validate_schema',
                         action='store_true',  help='Validate STAC schema.')
@@ -207,16 +208,11 @@ def main() -> None:
     # - EPSG code for the GSP file
     parser.add_argument('-E', '--epsg', type=int, default=4326,
                         help='EPSG code for the GSP file.')
-    # - Geospatial Product Extension
-    # - By default, the GSP file extension is set to 'shp'
-    parser.add_argument('-G', '--gsp_ext', type=str,
-                        default='shp', help='Geospatial Product Extension.',
-                        choices=['shp', 'csv', 'tif', 'tiff'])
+
     # - Parse the arguments
     args = parser.parse_args()
 
     # - Set Parameters
-    overwrite = args.overwrite      # - overwrite existing files
     validate_schema = args.validate_schema          # - validate STAC schema
     print_info = True               # - print information
     epsg = args.epsg                # - EPSG code for the GSP file
@@ -263,8 +259,13 @@ def main() -> None:
     if gsp_ext in ['shp', 'csv']:
         gdf_smp = VectorGSP()
         gdf_smp.load_gsp(gsp_path)
+        if gsp_ext == 'shp':
+            media_type = 'application/shp'
+        else:
+            media_type = pystac.MediaType.TEXT
     elif gsp_ext in ['tif', 'tiff']:
         gdf_smp = RasterGSP()
+        media_type = pystac.MediaType.GEOTIFF
 
         # - Construct the path to the zip file
         zip_path = Path(gsp_path).resolve()
@@ -297,7 +298,7 @@ def main() -> None:
     gsp_id = meta_dict['gsp_id']                # - GPS ID [TD3 ID]
     product_id = meta_dict['product_id']        # - Product ID [File Name]
     # - Area of Interest
-    aoi = get_aoi_info(meta_dict.get('aoi') or \
+    aoi = get_aoi_info(meta_dict.get('aoi') or
                        meta_dict.get('aoi_id'))['aoi_name']
 
     collection_title = gsp_description(gsp_id)         # - Collection Title
@@ -368,7 +369,7 @@ def main() -> None:
         "GSP",
         asset=pystac.Asset(
             href=f"./{item_id}.{gsp_ext}",
-            media_type=f"application/{gsp_ext}",
+            media_type=media_type,
             title=f"Lot 2 Geospatial Product: {item.id}",
             description=collection_s_descr,
             roles=["data", "visual"],
@@ -412,7 +413,11 @@ def main() -> None:
         item.properties["sar:frequency_band"] = FrequencyBand(s_info["band"])
         item.properties["sar:polarizations"] \
             = [Polarization(x) for x in s_info["polarization"]]
-        # item.properties["sar:instrument_mode"] = "IW"
+        # TODO: Need to updated this portion of the code when including
+        #      the other SAR sensors. In any case, the attributes included
+        #      in tis template extension are mandatory when using the
+        #      SAR extension.
+        item.properties["sar:instrument_mode"] = "IW"
         item.properties["sar:product_type"] = "SLC"
     item.properties["providers"] = [{"name": "eGeos",
                                      "roles": ["producer", "processor"],
