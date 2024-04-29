@@ -50,14 +50,14 @@
              <!--Geospatial Product ID from TD3-->
             <gsp_id>S3-01-SNT-02</gsp_id>
               <!--GSP file Name-->
-            <product_id>ISS_S301SNT01_20180105_20221228_08710208VVA_01</product_id>
+            <product_id>ISS_S301SNT02_20180105_20221228_08710208VVA_01</product_id>
         </gsp>
 
         <gsp>
             <!--Geospatial Product ID from TD3-->
             <gsp_id>S3-01-SNT-02</gsp_id>
             <!--GSP file Name-->
-            <product_id>ISS_S301SNT01_20180105_20221228_08110248VVD_01</product_id>
+            <product_id>ISS_S301SNT02_20180105_20221228_08110248VVD_01</product_id>
         </gsp>
 
         <!--Other Input Products Used to Generate the GSP-->
