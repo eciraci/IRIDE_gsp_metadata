@@ -31,16 +31,16 @@
     - 01: First version of the product.
 
 
-  - **ISS_S301CSM03_20180701_20231231_E437N220V_01.xml**:
+- **ISS_S301CSM03_20180701_20231231_BRNV_01**:
     - S301CSM03 2D Deformation - East-West and Vertical
     - 2018-07-01 to 2023-12-31
-    - E437N220V: Tile Upper Left Corner
+    - PSTE:  Area of Interest + Deformation Direction [East-West, Vertical]
     - 01: First version of the product.
 
     
 - **ISS_S301CSM04_20180701_20231231_PSTE_01**:
     - S301CSM04 2 - Active Deformation Areas
     - 2018-07-01 to 2023-12-31
-    - PSTE: Track + Area of Interest
+    - PSTE: Area of Interest + Deformation Direction [East-West, Vertical]
     - 01: First version of the product.
     
