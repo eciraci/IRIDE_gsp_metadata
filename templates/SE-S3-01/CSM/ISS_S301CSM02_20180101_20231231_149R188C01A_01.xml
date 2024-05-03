@@ -10,15 +10,21 @@
     <description>"Single Geometry Calibrated Deformation"</description>
     <!--Satellite [CSM, SNT, SAO]-->
     <sensor_id>CSM</sensor_id>
-    <!--CSM Satellite Track-->
-    <track_id>149</track_id>
+    <!--Acquisition Mode-->
+    <amode>STRIPMAP HIMAGE</amode>
+    <!--Sensor Mode-->
+    <smode>H4-05</smode>
+    <!--Polarization-->
+    <polarization>HH</polarization>
+   <!--CSM Satellite Track-->
+    <track>149</track>
+    <!--Orbit Direction A/D-->
+    <direction>A</direction>
+    <!--CSM Processing Level-->
+    <plevel>L1A SLC</plevel>
     <!--CSM Satellite Track Grid Row and Column-->
     <row>188</row>
     <col>01</col>
-    <!--Sensor Mode-->
-    <smode_id>STR-005</smode_id>
-    <!--Polarization-->
-    <polarization_id>HH</polarization_id>
     <!--IRIDE Area of Interest (PSTD = Pistoia Ascending)-->
     <aoi_id>PSTD</aoi_id>
     <!--Data Provider: (eGeos, Planetek, TREA, Nhazka)-->
@@ -56,18 +62,18 @@
           <input_id>S3-NEO-I03</input_id>      # - S3-NEO-I0[3,4,5]
         </gnss>
 
-        <!--Reference SLC-->
+        <!--Reference SLC - Follow EGMS Scheme-->
         <reference>
           <image>
-            <orbit_type>...</orbit_type>
             <product_id>...</product_id>
+              ...
           </image>
         </reference>
 
-        <!--List of Secondary SLCs-->
+        <!--List of Secondary SLCs - Follow EGMS Scheme-->
         <image>
-          <orbit_type>...</orbit_type>
           <product_id>...</product_id>
+            ...
         </image>
 
         <!--Other Input Products Used to Generate the GSP-->
