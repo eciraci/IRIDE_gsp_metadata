@@ -5,7 +5,7 @@
     <!--Geospatial Product ID from TD3-->
     <gsp_id>S3-03-CHA-01</gsp_id>
     <!--Product - File Name-->
-    <product_id>ISS_S306VOL02_20150205_20211230_SNT044COAOP_01</product_id>
+    <product_id>ISS_S306VOL02_2010701_20230731_SNT044COAOP_01</product_id>
     <!--Product Name - Description-->
     <description>"Active Deformation Areas Perimeter"</description>
     <!--Satellite [CSM, SNT, SAO]-->
@@ -19,8 +19,8 @@
     <!--Production Date yyyymmdd-->
     <production_date>20240111</production_date>
     <!--Reference Period Start and End Date yyyymmdd-->
-    <start_date>20150205</start_date>
-    <end_date>20211230</end_date>
+    <start_date>20180701</start_date>
+    <end_date>20230731</end_date>
     <!-- GSP Perimeter -->
     <!--Note: Coordinate values does not represent the actual tile location
     but are used here just for illustration purposes-->

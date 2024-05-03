@@ -7,11 +7,14 @@
                 <xs:element ref="product_id"/>
                 <xs:element ref="description"/>
                 <xs:element ref="sensor_id"/>
-                <xs:element ref="track_id"/>
+                <xs:element ref="amode"/>
+                <xs:element ref="smode"/>
+                <xs:element ref="polarization"/>
+                <xs:element ref="track"/>
+                <xs:element ref="direction"/>
+                <xs:element ref="plevel"/>
                 <xs:element ref="row"/>
                 <xs:element ref="col"/>
-                <xs:element ref="smode_id"/>
-                <xs:element ref="polarization_id"/>
                 <xs:element ref="aoi_id"/>
                 <xs:element ref="provider"/>
                 <xs:element ref="production_date"/>
@@ -25,11 +28,14 @@
     </xs:element>
     <xs:element name="gsp_id" type="xs:NCName"/>
     <xs:element name="sensor_id" type="xs:NCName"/>
-    <xs:element name="track_id" type="xs:integer"/>
+    <xs:element name="amode" type="xs:string"/>
+    <xs:element name="smode" type="xs:NCName"/>
+    <xs:element name="polarization" type="xs:NCName"/>
+    <xs:element name="track" type="xs:integer"/>
+    <xs:element name="direction" type="xs:NCName"/>
+    <xs:element name="plevel" type="xs:string"/>
     <xs:element name="row" type="xs:integer"/>
     <xs:element name="col" type="xs:integer"/>
-    <xs:element name="smode_id" type="xs:NCName"/>
-    <xs:element name="polarization_id" type="xs:NCName"/>
     <xs:element name="aoi_id" type="xs:NCName"/>
     <xs:element name="provider" type="xs:NCName"/>
     <xs:element name="production_date" type="xs:integer"/>
@@ -74,13 +80,11 @@
     <xs:element name="product_id" type="xs:NMTOKEN"/>
     <xs:element name="description" type="xs:string"/>
     <xs:element name="image">
-        <xs:complexType>
+        <xs:complexType mixed="true">
             <xs:sequence>
-                <xs:element ref="orbit_type"/>
-                <xs:element ref="product_id"/>
+                <xs:element minOccurs="0" maxOccurs="unbounded" ref="product_id"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:element name="orbit_type" type="xs:NMTOKEN"/>
     <xs:element name="input_id" type="xs:NCName"/>
 </xs:schema>

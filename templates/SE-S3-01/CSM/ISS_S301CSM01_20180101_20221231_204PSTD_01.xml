@@ -10,12 +10,18 @@
     <description>"Single Geometry Calibrated Deformation"</description>
     <!--Satellite [CSM, SNT, SAO]-->
     <sensor_id>CSM</sensor_id>
-    <!--CSM Satellite Track-->
-    <track_id>204</track_id>
+    <!--Acquisition Mode-->
+    <amode>STRIPMAP HIMAGE</amode>
     <!--Sensor Mode-->
-    <smode_id>STR-005</smode_id>
+    <smode>STR-007</smode>
     <!--Polarization-->
-    <polarization_id>HH</polarization_id>
+    <polarization>HH</polarization>
+    <!--CSM Satellite Track-->
+    <track>204</track>
+    <!--Orbit Direction A/D-->
+    <direction>D</direction>
+    <!--CSM Processing Level-->
+    <plevel>L1A SLC</plevel>
     <!--IRIDE Area of Interest (PSTD = Pistoia Descending)-->
     <aoi_id>PSTD</aoi_id>
     <!--Data Provider: (eGeos, Planetek, TREA, Nhazca)-->
@@ -29,8 +35,8 @@
     <!--Note: Coordinate values does not represent the actual frame location
     but are used here just for illustration purposes-->
     <geometry> POLYGON ((11.1185084808333 43.7213142073969,
-    10.6205870026541 43.7895188211484, 10.7202373078149	44.1745231586271,
-    11.2217260147361 44.1069055189923, 11.1185084808333	43.7213142073969))
+        10.6205870026541 43.7895188211484, 10.7202373078149	44.1745231586271,
+        11.2217260147361 44.1069055189923, 11.1185084808333	43.7213142073969))
     </geometry>
     <!--Coordinate Reference System-->
     <crs>EPSG:4326</crs>
@@ -50,18 +56,18 @@
         </description>
     </dem>
 
-    <!--Reference SLC-->
+    <!--Reference SLC - Follow EGMS Scheme-->
     <reference>
       <image>
-        <orbit_type>...</orbit_type>
         <product_id>...</product_id>
+          ...
       </image>
     </reference>
 
-    <!--List of Secondary SLCs-->
+    <!--List of Secondary SLCs - Follow EGMS Scheme-->
     <image>
-      <orbit_type>...</orbit_type>
       <product_id>...</product_id>
+        ...
     </image>
 
     <!--Other Input Products Used to Generate the GSP-->

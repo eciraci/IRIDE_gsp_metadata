@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<GSP>
+    <gsp_id>S3-05-ETQ-02</gsp_id>
+    <product_id>ISS_S305ETQ02_20190101_20240331_CSMMTIVM_01</product_id>
+    <description>"2D calibrated deformations: East-West and Vertical components"</description>
+    <sensor_id>CSM</sensor_id>
+    <component>Vertical</component>
+    <aoi_id>MTI</aoi_id>
+    <provider>Planetek</provider>
+    <production_date>20240514</production_date>
+    <start_date>20190101</start_date>
+    <end_date>20240331</end_date>
+    <!--Note: Coordinate values does not represent the actual GSP location
+    but are used here just for illustration purposes-->
+    <geometry>POLYGON ((4775274 2077623, 4781075 2109419, 4824434 2117173,
+        4838568 2110099, 4840162 2094041, 4819507 2064121, 4795683 2063023,
+        4775274 2077623))</geometry>
+    <crs>EPSG:3035</crs>
+    <dataset>
+        <gsp>
+            <gsp_id>S3-01-CSM-03</gsp_id>
+            <product_id>ISS_S301SNT03_20190101_20240331_MTIV_01</product_id>
+        </gsp>
+    </dataset>
+</GSP>
