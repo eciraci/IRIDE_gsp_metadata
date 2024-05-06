@@ -29,10 +29,12 @@
     <!--Reference Period Start and End Date yyyymmdd-->
     <start_date>20180701</start_date>
     <end_date>20221228</end_date>
-
     <!--Burst perimeter - corners coordinates are in EPSG:4326-->
-    <!--Note: Coordinate values does not represent the actual Burst location
-    but are used here just for illustration purposes-->
+    <!--<bbox>minx, miny, maxx, maxy</bbox>-->
+    <!-- Burst Perimeter/Envelope -->
+    <!--Note: Coordinate values in this example do not represent the actual GSP 
+    location but are used here for illustration purposes. 
+    This element can be included as either a POLYGON or a  Polygone GeoJSON object-->
     <geometry>POLYGON ((33.098005535200876 35.11517612263039,
         33.05369474340623 35.30003518486628, 34.04812645097012 35.45191481283175,
         34.08879409662925 35.26688112117148, 33.098005535200876 35.11517612263039))

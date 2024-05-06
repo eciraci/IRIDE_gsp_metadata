@@ -17,12 +17,18 @@
     <!--Reference Period Start and End Date yyyymmdd-->
     <start_date>20180101</start_date>
     <end_date>20231231</end_date>
-
     <!--IRIDE Area of Interest (BRN = Brennero)-->
     <aoi>BRN</aoi>
-    <!--Bounding Box-->
+    <!-- GSP Bounding Box - Optional -->
+    <!--<bbox>minx, miny, maxx, maxy</bbox>-->
+    <!-- GSP Perimeter/Envelope -->
+    <!--Note: Coordinate values in this example do not represent the actual GSP 
+    location but are used here for illustration purposes. 
+    This element can be included as either a POLYGON or a  Polygone GeoJSON object-->
     <bbox>11.637880417763027 46.59444779971044 11.772074421687002 46.99352129068873</bbox>
-	<geometry>{'type': 'Polygon', 'coordinates': [[(11.637880417763027, 46.59444779971044), (11.772074421687002, 46.59444779971044), (11.772074421687002, 46.99352129068873), (11.637880417763027, 46.99352129068873), (11.637880417763027, 46.59444779971044)]]}</geometry>
+	<geometry>{'type': 'Polygon', 'coordinates': [[(11.637880417763027, 46.59444779971044),
+        (11.772074421687002, 46.59444779971044), (11.772074421687002, 46.99352129068873),
+        (11.637880417763027, 46.99352129068873), (11.637880417763027, 46.59444779971044)]]}</geometry>
     <!--Coordinate Reference System-->
     <crs>EPSG:4326</crs>
 

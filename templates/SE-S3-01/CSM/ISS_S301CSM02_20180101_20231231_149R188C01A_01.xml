@@ -34,9 +34,12 @@
     <!--Reference Period Start and End Date yyyymmdd-->
     <start_date>20180101</start_date>
     <end_date>20221231</end_date>
-    <!-- Nhazca -->
-    <!--Note: Coordinate values does not represent the actual cell location
-    but are used here just for illustration purposes-->
+    <!-- CSM CELL Bounding Box - Optional -->
+    <!--<bbox>minx, miny, maxx, maxy</bbox>-->
+    <!-- CSM CELL Perimeter/Envelope -->
+    <!--Note: Coordinate values in this example do not represent the actual GSP 
+    location but are used here for illustration purposes. 
+    This element can be included as either a POLYGON or a  Polygone GeoJSON object-->
     <geometry>POLYGON ((10.65519271066972 43.88672941335709,
         S82427640920696 43.91048430512687, 10.65519271066972 43.88672941335709))
     </geometry>

@@ -21,10 +21,15 @@
 	<end_date>20230623</end_date>
 	<!--Area of Interest-->
 	<aoi>BRN</aoi>
-		<!--Dataset Envelope or bounding-box-->
-	<!--This element could be also a GeoJSON object-->
+	<!--GSP Envelope or bounding-box-->
+    <!--<bbox>minx, miny, maxx, maxy</bbox>-->
+    <!--Note: Coordinate values in this example do not represent the actual GSP 
+    location but are used here for illustration purposes. 
+    This element can be included as either a POLYGON or a  Polygone GeoJSON object-->
 	<bbox>12.041478590301658 46.768758368746 12.05180275851212 46.77858826392486</bbox>
-	<geometry>{'type': 'Polygon', 'coordinates': [[(12.041478590301658, 46.768758368746), (12.05180275851212, 46.768758368746), (12.05180275851212, 46.77858826392486), (12.041478590301658, 46.77858826392486), (12.041478590301658, 46.768758368746)]]}</geometry>
+	<geometry>{'type': 'Polygon', 'coordinates': [[(12.041478590301658, 46.768758368746),
+		(12.05180275851212, 46.768758368746), (12.05180275851212, 46.77858826392486),
+		(12.041478590301658, 46.77858826392486), (12.041478590301658, 46.768758368746)]]}</geometry>
 	<!--Coordinate Reference System-->
 	<crs>EPSG:4326</crs>
 	<dataset>

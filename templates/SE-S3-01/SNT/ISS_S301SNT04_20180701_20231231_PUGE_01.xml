@@ -20,7 +20,7 @@
 
     <!--IRIDE Area of Interest (PUG = Puglia)-->
     <aoi>PUG</aoi>
-    <!--Bounding Box-->
+    <!--Bounding Box - Mandatory for this product.-->
     <bbox>14.93, 39.78, 18.52,42.22</bbox>
     <!--Coordinate Reference System-->
     <crs>EPSG:4326</crs>
