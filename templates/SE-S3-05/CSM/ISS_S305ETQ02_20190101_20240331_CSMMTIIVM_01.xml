@@ -11,7 +11,8 @@
     <start_date>20190101</start_date>
     <end_date>20240331</end_date>
     <!--Note: Coordinate values does not represent the actual GSP location
-    but are used here just for illustration purposes-->
+    but are used here just for illustration purposes. This element can be
+    included as either a POLYGON or a  Polygone GeoJSON object-->
     <geometry>POLYGON ((4775274 2077623, 4781075 2109419, 4824434 2117173,
         4838568 2110099, 4840162 2094041, 4819507 2064121, 4795683 2063023,
         4775274 2077623))</geometry>

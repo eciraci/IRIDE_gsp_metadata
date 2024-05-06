@@ -31,7 +31,12 @@
     <!--Reference Period Start and End Date yyyymmdd-->
     <start_date>20180101</start_date>
     <end_date>20221231</end_date>
-    <!-- CSM Frame Perimeter -->
+    <!-- CSM FRAME Bounding Box - Optional -->
+    <!--<bbox>minx, miny, maxx, maxy</bbox>-->
+    <!-- CSM FRAME Perimeter/Envelope -->
+    <!--Note: Coordinate values in this example do not represent the actual GSP 
+    location but are used here for illustration purposes. 
+    This element can be included as either a POLYGON or a  Polygone GeoJSON object-->
     <bbox>10.620432938038196 43.676589526315524 11.391650538805425 44.17519858830395</bbox>
     <geometry>{'type': 'Polygon', 'coordinates': [[(10.620432938038196, 43.676589526315524), (11.391650538805425, 43.676589526315524), (11.391650538805425, 44.17519858830395), (10.620432938038196, 44.17519858830395), (10.620432938038196, 43.676589526315524)]]}</geometry>
     <!--Coordinate Reference System-->

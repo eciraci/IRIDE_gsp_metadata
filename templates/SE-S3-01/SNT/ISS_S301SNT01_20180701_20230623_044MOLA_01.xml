@@ -28,8 +28,12 @@
 	<!--Start Date and End Date-->
 	<start_date>20180701</start_date>
 	<end_date>20230623</end_date>
-	<!--Dataset Envelope or bounding-box-->
-	<!--This element could be also a GeoJSON object-->
+	<!-- Burst Perimeter Bounding Box - Optional -->
+    <!--<bbox>minx, miny, maxx, maxy</bbox>-->-->
+    <!-- GSP Perimeter/Envelope -->
+    <!--Note: Coordinate values in this example do not represent the actual GSP 
+    location but are used here for illustration purposes. 
+    This element can be included as either a POLYGON or a  Polygone GeoJSON object-->
 	<geometry>POLYGON ((13.941282 41.381718, 13.941282 42.069287, 15.158177 42.069287, 15.158177 41.381718, 13.941282 41.381718))</geometry>
 	<!--Coordinate Reference System-->
 	<crs>EPSG:4326</crs>
