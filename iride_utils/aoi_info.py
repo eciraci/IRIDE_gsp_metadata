@@ -25,6 +25,10 @@ def get_aoi_info(aoi: str) -> dict:
         aoi_tag = 'BRN'
         aoi_name = 'Brennero Area'
 
+    elif aoi in ['belluno', 'bel']:
+        aoi_tag = 'BEL'
+        aoi_name = 'Belluno Area'
+
     elif aoi in ['cortina', 'crt']:
         aoi_tag = 'CRT'
         aoi_name = 'Cortina'
@@ -129,6 +133,11 @@ def get_aoi_info(aoi: str) -> dict:
     elif aoi in ['valle_d_aosta', 'vda']:
         aoi_tag = 'VDA'
         aoi_name = 'Valle d\'Aosta'
+
+    elif aoi in ['etns', 'etn']:
+        aoi_tag = 'ETN'
+        aoi_name = 'ETN'
+
     else:
 
         raise ValueError(f"AOI {aoi} not found.")
