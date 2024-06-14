@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="GSP">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="gsp_id"/>
+                <xs:element ref="product_id"/>
+                <xs:element ref="description"/>
+                <xs:element ref="sensor_id"/>
+                <xs:element ref="provider"/>
+                <xs:element ref="production_date"/>
+                <xs:element ref="start_date"/>
+                <xs:element ref="end_date"/>
+                <xs:element ref="aoi"/>
+                <xs:element ref="bbox"/>
+                <xs:element ref="crs"/>
+                <xs:element ref="dataset"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="sensor_id" type="xs:NCName"/>
+    <xs:element name="provider" type="xs:NCName"/>
+    <xs:element name="production_date" type="xs:integer"/>
+    <xs:element name="start_date" type="xs:integer"/>
+    <xs:element name="end_date" type="xs:integer"/>
+    <xs:element name="aoi" type="xs:NCName"/>
+    <xs:element name="bbox" type="xs:string"/>
+    <xs:element name="crs" type="xs:NMTOKEN"/>
+    <xs:element name="dataset">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="dem"/>
+                <xs:element maxOccurs="unbounded" ref="gsp"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="dem">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="input_id"/>
+                <xs:element ref="version"/>
+                <xs:element ref="description"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="input_id" type="xs:NCName"/>
+    <xs:element name="version" type="xs:string"/>
+    <xs:element name="gsp">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="gsp_id"/>
+                <xs:element ref="product_id"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="gsp_id" type="xs:NCName"/>
+    <xs:element name="product_id" type="xs:string"/>
+    <xs:element name="description" type="xs:string"/>
+</xs:schema>

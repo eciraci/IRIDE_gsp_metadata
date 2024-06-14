@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<GSP>
+	<gsp_id>S3-01-SNT-03</gsp_id>
+	<product_id>ISS_S301SNT03_20180717_20230615_UMBV_01</product_id>
+	<description>"2D Deformation East-West and Vertical"</description>
+	<sensor_id>SNT</sensor_id>
+	<provider>eGeos</provider>
+	<production_date>20240313</production_date>
+	<start_date>20180717</start_date>
+	<end_date>20230615</end_date>
+	<aoi>UMB</aoi>
+	<bbox>4477650.0, 2144150.0, 4588650.0, 2280450.0</bbox>
+	<crs>EPSG:3035</crs>
+	<dataset>
+		<dem>
+			<input_id>S3-NEO-I01</input_id>
+			<version>Cop-DEM - Resolution (m) 30 x 30</version>
+			<description>Copernicus Digital Elevation Model (DEM) (Version 1.0). https://spacedata.copernicus.eu/collections/copernicus-digital-elevation-model.</description>
+		</dem>
+		<gsp>
+			<gsp_id>S3-01-SNT-03</gsp_id>
+			<product_id>ISS_S301SNT03_20180717_20230615_E44N21V_01</product_id>
+		</gsp>
+		<gsp>
+			<gsp_id>S3-01-SNT-03</gsp_id>
+			<product_id>ISS_S301SNT03_20180711_20230615_E44N22V_01</product_id>
+		</gsp>
+		<gsp>
+			<gsp_id>S3-01-SNT-03</gsp_id>
+			<product_id>ISS_S301SNT03_20180717_20230621_E45N22V_01</product_id>
+		</gsp>
+		<gsp>
+			<gsp_id>S3-01-SNT-03</gsp_id>
+			<product_id>ISS_S301SNT03_20180717_20230621_E45N21V_01</product_id>
+		</gsp>
+	</dataset>
+</GSP>
