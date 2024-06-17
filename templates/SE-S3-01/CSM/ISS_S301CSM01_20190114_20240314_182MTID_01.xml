@@ -1,29 +1,55 @@
 <?xml version='1.0' encoding='UTF-8'?>
+<!--IRIDE Service Segment (ISS) - Lot2 - Metadata -->
+<!--CSM FRAME -Distribution unit for S3-01-CSM-01-->
 <FRAME>
+    <!--Geospatial Product ID from TD3-->
     <gsp_id>S3-01-CSM-01</gsp_id>
+    <!--Product - File Name-->
     <product_id>ISS_S301CSM01_20190114_20240314_182MTID_01</product_id>
+    <!--Product Name - Description-->
     <description>"Single Geometry Deformation"</description>
+    <!--Satellite [CSM, SNT, SAO]-->
     <sensor_id>CSM</sensor_id>
+    <!--Acquisition Mode-->
+    <amode>STRIPMAP HIMAGE</amode>
+    <!--Track ID-->
     <track_id>182</track_id>
+    <!--Sensor Mode-->
     <smode_id>H4-01</smode_id>
+    <!--Polarization-->
     <polarization_id>HH</polarization_id>
+    <!--IRIDE Area of Interest (PSTD = Pistoia Descending)-->
     <aoi_id>MTID</aoi_id>
+    <!--Data Provider: (eGeos, Planetek, TREA, Nhazca)-->
     <provider>Planetek</provider>
+    <!--Production Date yyyymmd-->
     <production_date>20240510</production_date>
+    <!--Reference Period Start and End Date yyyymmdd-->
     <start_date>20190114</start_date>
     <end_date>20240314</end_date>
+    <!-- CSM FRAME Bounding Box - Optional -->
+    <!--<bbox>minx, miny, maxx, maxy</bbox>-->
+    <!-- CSM FRAME Perimeter/Envelope -->
+    <!--Note: Coordinate values in this example do not represent the actual GSP
+    location but are used here for illustration purposes.
+    This element can be included as either a POLYGON or a  Polygone GeoJSON object-->
     <geometry>POLYGON ((16.082490000000000 41.93815300000000, 16.007673999999998 41.94928400000001, 15.624056000000001 41.92758500000000, 15.616040000000000 41.91068300000000, 15.561601000000001 41.74922800000000, 15.550401000000001 41.69957800000000, 15.556199000000001 41.66734500000000, 15.557834000000000 41.66361200000000, 15.899125000000000 41.61289400000000, 15.950598000000001 41.61305300000000, 16.017461999999998 41.67118700000000, 16.090826000000000 41.93494700000000, 16.088314000000000 41.93720400000000, 16.082490000000000 41.93815300000000))</geometry>
+    <!--Coordinate Reference System-->
     <crs>EPSG:4326</crs>
     <dataset>
+    <!--DEM used for geocoding-->
     <dem>
+        <!--Input ID from TD3-->
         <input_id>S3-NEO-I01</input_id>
         <version>Tinitaly-10</version>
+        <!--Dataset Description-->
         <description>"Tarquini S., I. Isola, M. Favalli, A. Battistini,
           G. Dotta (2023). TINITALY, a digital elevation model of Italy with
           a 10 meters cell size (Version 1.1). Istituto Nazionale di Geofisica
           e Vulcanologia (INGV). https://doi.org/10.13127/tinitaly/1.1."
         </description>
     </dem>
+    <!--Reference SLC - Follow EGMS Scheme-->
     <reference>
       <image>
         <orbit_type>FILTERED</orbit_type>
@@ -34,6 +60,7 @@
       <orbit_type>FILTERED</orbit_type>
       <product_id>CSKS2_SCS_B_HI_01_HH_RD_FF_20190114165645_20190114165652</product_id>
     </image>
+    <!--Secondary SLCs - Follow EGMS Scheme-->
     <image>
       <orbit_type>FILTERED</orbit_type>
       <product_id>CSKS2_SCS_B_HI_01_HH_RD_FF_20190130165647_20190130165653</product_id>
