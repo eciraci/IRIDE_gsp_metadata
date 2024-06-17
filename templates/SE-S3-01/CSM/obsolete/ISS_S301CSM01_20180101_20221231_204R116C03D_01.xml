@@ -47,7 +47,7 @@
     <!--Coordinate Reference System-->
     <crs>EPSG:4326</crs>
 
-    <!--List of inputs an GSPs used to generate the product.-->
+
     <dataset>
     <!--DEM used for geocoding-->
     <dem>

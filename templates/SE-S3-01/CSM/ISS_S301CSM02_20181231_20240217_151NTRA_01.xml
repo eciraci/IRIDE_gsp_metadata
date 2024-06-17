@@ -1,21 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--IRIDE Service Segment (ISS) - Lot2 - Metadata -->
-<!--CSM FRAME -Distribution unit for S3-01-CSM-01-->
+<!--CSM FRAME -Distribution unit for S3-01-CSM-02-->
 <FRAME>
     <!--Geospatial Product ID from TD3-->
-    <gsp_id>S3-01-CSM-01</gsp_id>
+    <gsp_id>S3-01-CSM-02</gsp_id>
     <!--Product - File Name-->
-    <product_id>ISS_S301CSM01_20181231_20240217_151NTRA_01</product_id>
+    <product_id>ISS_S301CSM02_20181231_20240217_151NTRA_01</product_id>
     <!--Product Name - Description-->
-    <description>"Single Geometry Deformation"</description>
+    <description>"Single Geometry Calibrated Deformation"</description>
     <!--Satellite [CSM, SNT, SAO]-->
     <sensor_id>CSM</sensor_id>
     <!--Acquisition Mode-->
-    <amode>STRIPMAP HIMAGE</amode>
+    <smode_id>H4-05</smode_id>
     <!--Track ID-->
     <track_id>151</track_id>
-    <!--Sensor Mode-->
-    <smode_id>H4-05</smode_id>
     <!--Polarization-->
     <polarization_id>HH</polarization_id>
     <!--IRIDE Area of Interest (PSTD = Pistoia Descending)-->
@@ -44,6 +42,7 @@
         16.173743000000002 39.00159200000000))</geometry>
     <!--Coordinate Reference System-->
     <crs>EPSG:4326</crs>
+
     <!--List of inputs an GSPs used to generate the product.-->
     <dataset>
     <!--DEM used for geocoding-->
@@ -51,14 +50,17 @@
         <!--Input ID from TD3-->
         <input_id>S3-NEO-I01</input_id>
         <version>Tinitaly-10</version>
-        <!--Dataset Description-->
         <description>"Tarquini S., I. Isola, M. Favalli, A. Battistini,
           G. Dotta (2023). TINITALY, a digital elevation model of Italy with
           a 10 meters cell size (Version 1.1). Istituto Nazionale di Geofisica
           e Vulcanologia (INGV). https://doi.org/10.13127/tinitaly/1.1."
         </description>
     </dem>
-    <!--Reference SLC - Follow EGMS Scheme-->
+    <!--gnss used for Calibration-->
+    <gnss>
+      <version>2023.0</version>
+    </gnss>
+    <!--Reference SLC -->
     <reference>
       <image>
         <orbit_type>FILTERED</orbit_type>

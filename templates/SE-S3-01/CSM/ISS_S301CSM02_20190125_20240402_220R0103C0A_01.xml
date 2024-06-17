@@ -1,0 +1,397 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--IRIDE Service Segment (ISS) - Lot2 - Metadata -->
+<!--CSM CELL - Sharing unit for S3-01-CSM-01-->
+<CELL>
+    <!--Geospatial Product ID from TD3-->
+    <gsp_id>S3-01-CSM-02</gsp_id>
+    <!--Product - File Name-->
+    <product_id>ISS_S301CSM02_20190125_20240402_220R0103C0A_01</product_id>
+    <!--Product Name - Description-->
+    <description>"Single Geometry Calibrated Deformation"</description>
+    <!--Satellite [CSM, SNT, SAO]-->
+    <sensor_id>CSM</sensor_id>
+    <!--Acquisition Mode-->
+    <amode>STRIPMAP HIMAGE</amode>
+    <!--Sensor Mode-->
+    <smode_id>H4-01</smode_id>
+    <!--Polarization-->
+    <polarization_id>HH</polarization_id>
+    <!--CSM Satellite Track-->
+    <track_id>220</track_id>
+    <!--CSM Satellite Track Grid Row and Column-->
+    <row>0103</row>
+    <col>0</col>
+    <!--IRIDE Area of Interest (PSTD = Pistoia Ascending)-->
+    <aoi_id>MTIA</aoi_id>
+    <!--Data Provider: (eGeos, Planetek, TREA, Nhazca)-->
+    <provider>Planetek</provider>
+    <!--Production Date yyyymmdd-->
+    <production_date>20240510</production_date>
+    <!--Reference Period Start and End Date yyyymmdd-->
+    <start_date>20190125</start_date>
+    <end_date>20240402</end_date>
+    <!-- CSM CELL Bounding Box - Optional -->
+    <!--<bbox>minx, miny, maxx, maxy</bbox>-->
+    <!-- CSM CELL Perimeter/Envelope -->
+    <!--Note: Coordinate values in this example do not represent the actual GSP
+    location but are used here for illustration purposes.
+    This element can be included as either a POLYGON or a  Polygone GeoJSON object-->
+    <geometry>POLYGON ((15.769259309585484 41.93194505638677,
+        15.768802208153909 41.93368779880011, 15.645056000000000 41.92522800000000,
+        15.582924000000000 41.91591200000000, 15.585823419669399 41.90528370633461,
+        15.769259309585484 41.93194505638677))</geometry>
+    <!--Coordinate Reference System-->
+    <crs>EPSG:4326</crs>
+
+    <!--List of inputs an GSPs used to generate the product.-->
+    <dataset>
+    <!--DEM used for geocoding-->
+    <dem>
+        <input_id>S3-NEO-I01</input_id>
+        <version>Tinitaly-10</version>
+        <description>"Tarquini S., I. Isola, M. Favalli, A. Battistini,
+          G. Dotta (2023). TINITALY, a digital elevation model of Italy with
+          a 10 meters cell size (Version 1.1). Istituto Nazionale di Geofisica
+          e Vulcanologia (INGV). https://doi.org/10.13127/tinitaly/1.1."
+        </description>
+    </dem>
+    <!--gnss used for Calibration-->
+    <gnss>
+      <version>2023.0</version>
+    </gnss>
+
+    <!--Reference SLC-->
+    <reference>
+      <image>
+        <orbit_type>RESTITUTED</orbit_type>
+        <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20230705042756_20230705042802_1_F_42N_Z33_N00</product_id>
+      </image>
+    </reference>
+
+    <!--List of Secondary SLCs-->
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20190125042739_20190125042746</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20190210042737_20190210042744</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20190226042736_20190226042742</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20190314042740_20190314042746</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20190330042742_20190330042748</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20190415042742_20190415042748</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20190501042741_20190501042748</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20190517042745_20190517042751</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20190602042745_20190602042752</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20190618042745_20190618042751</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20190704042749_20190704042755</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20190720042750_20190720042756</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20190805042748_20190805042754</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20190821042749_20190821042756</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20190906042750_20190906042756</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20191109042759_20191109042806</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20191227042758_20191227042805</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20200128042756_20200128042802</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20200213042752_20200213042758</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20200316042756_20200316042802</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20200503042757_20200503042803</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20200519042757_20200519042803</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20200620042753_20200620042759</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20200722042750_20200722042756</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20200823042749_20200823042755</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20200908042745_20200908042751</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20201010042749_20201010042755</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20201026042748_20201026042755</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20201111042746_20201111042752</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20201213042744_20201213042750</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20210114042743_20210114042749</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20210420042740_20210420042746</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20210522042740_20210522042746</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20210623042742_20210623042749</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20210810042746_20210810042752</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20210927042751_20210927042757</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSKS1_SCS_B_HI_01_HH_RA_FF_20211130042755_20211130042801</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20211222042754_20211222042800_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20220107042750_20220107042756_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20220123042748_20220123042754_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20220208042745_20220208042751_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20220224042745_20220224042751_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20220312042745_20220312042751_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20220429042745_20220429042752_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20220515042747_20220515042753_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20220531042747_20220531042753_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20220718042746_20220718042752_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20220803042746_20220803042752_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20220904042746_20220904042752_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20220920042746_20220920042752_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20221006042747_20221006042754_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20221022042750_20221022042757_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20221225042752_20221225042758_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20230110042752_20230110042759_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20230126042754_20230126042801_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20230211042755_20230211042802_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20230227042757_20230227042803_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20230315042757_20230315042804_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20230331042756_20230331042802_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20230416042758_20230416042804_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20230502042758_20230502042805_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20230518042756_20230518042802_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20230603042800_20230603042806_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20230619042759_20230619042805_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20230705042756_20230705042802_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>FILTERED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_F_20230721042755_20230721042802_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20230806042754_20230806042801_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20230822042755_20230822042801_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20230907042755_20230907042801_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20230923042753_20230923042759_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>RESTITUTED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_R_20231009042754_20231009042800_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>PROPAGATED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_P_20231025042754_20231025042800_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>PROPAGATED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_P_20231110042754_20231110042800_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>PROPAGATED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_P_20231126042754_20231126042801_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>PROPAGATED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_P_20231228042753_20231228042800_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>PROPAGATED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_P_20240113042753_20240113042759_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>PROPAGATED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_P_20240129042751_20240129042758_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>PROPAGATED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_P_20240214042748_20240214042754_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>PROPAGATED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_P_20240301042746_20240301042752_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>PROPAGATED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_P_20240317042743_20240317042750_1_F_42N_Z33_N00</product_id>
+    </image>
+    <image>
+      <orbit_type>PROPAGATED</orbit_type>
+      <product_id>CSG_SSAR1_SCS_B_0101_STR_003_HH_RA_P_20240402042746_20240402042752_1_F_42N_Z33_N00</product_id>
+    </image>
+  </dataset>
+</CELL>
