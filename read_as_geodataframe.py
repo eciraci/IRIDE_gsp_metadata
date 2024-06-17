@@ -30,7 +30,7 @@ def read_dset_from_zip(zip_path: Path, **kwargs) -> gpd.GeoDataFrame:
     zip_path = Path(zip_path)
     if zip_path.with_suffix(".csv").name in zip_names:
         # - Changed to run on Windows systems
-        with fsspec.open(f"zip://{zip_path.with_suffix(".csv").name}::"
+        with fsspec.open(f"zip://{zip_path.with_suffix('.csv').name}::"
                          + zip_path.as_posix()) as of:
             return read_csv_as_geodataframe(of, **kwargs)
     elif zip_path.with_suffix(".shp").name in zip_names:
