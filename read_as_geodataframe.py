@@ -2,14 +2,13 @@
 Written by: Filippo Santarelli - February 2024
 
 Utility functions to work with geospatial data.
- - Convert a CSV file to a GeoDataFrame.
- - Convert a file provided in csv, shp, and zip  to a GeoDataFrame.
+ - Convert a file provided in csv, shp, parquet, and zip  to a GeoDataFrame.
 """
 # - Python Dependencies:
 from pathlib import Path
 import logging
 import zipfile
-from typing import Optional, List
+from typing import Optional
 import fsspec
 import geopandas as gpd
 import pandas as pd
@@ -30,12 +29,16 @@ def read_dset_from_zip(zip_path: Path, **kwargs) -> gpd.GeoDataFrame:
 
     zip_path = Path(zip_path)
     if zip_path.with_suffix(".csv").name in zip_names:
-        with fsspec.open("zip://*.csv::" + zip_path.as_posix()) as of:
+        # - Changed to run on Windows systems
+        with fsspec.open(f"zip://{zip_path.with_suffix('.csv').name}::"
+                         + zip_path.as_posix()) as of:
             return read_csv_as_geodataframe(of, **kwargs)
     elif zip_path.with_suffix(".shp").name in zip_names:
-        path_shp = f"{zip_path}!{zip_path.stem}.shp"
-        df = gpd.read_file(Path(path_shp))
-        return df
+        with fsspec.open("zip://*.shp::" + zip_path.as_posix()) as of:
+            return read_as_geodataframe(of, **kwargs)
+    elif zip_path.with_suffix(".parquet").name in zip_names:
+        with fsspec.open("zip://*.parquet::" + zip_path.as_posix()) as of:
+            return gpd.read_parquet(of)
     else:
         raise NotImplementedError("ZIP file must contain a CSV or SHP file")
 
