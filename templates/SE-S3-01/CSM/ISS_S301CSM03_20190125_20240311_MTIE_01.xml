@@ -1,41 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!--IRIDE Service Segment (ISS) - Lot2 - Metadata -->
-<!--Active Areas Deformation for S3-01-SNT-04-->
+<!--Active Areas Deformation for S3-01-CSM-04-->
 <GSP>
     <!--Geospatial Product ID from TD3-->
     <gsp_id>S3-01-CSM-03</gsp_id>
     <!--Product - File Name-->
-    <product_id>ISS_S301SNT03_20180701_20231231_BRNV_01</product_id>
+    <product_id>ISS_S301CSM03_20190125_20240311_MTIE_01</product_id>
     <!--Product Name - Description-->
     <description>"2D Deformation East-West and Vertical"</description>
     <!--Satellite [CSM, SNT, SAO]-->
     <sensor_id>CSM</sensor_id>
+    <!--Polarization [HH, HV, VH, VV]-->
+    <polarization_id>HH</polarization_id>
+    <!--IRIDE Area of Interest (PST = Pistoia)-->
+    <aoi_id>MTI</aoi_id>
     <!--Data Provider: (eGeos, Planetek, TREA, Nhazca)-->
-    <provider>eGeos</provider>
+    <provider>Planetek</provider>
     <!--Production Date yyyymmdd-->
-    <production_date>20180101</production_date>
+    <production_date>20240510</production_date>
     <!--Reference Period Start and End Date yyyymmdd-->
-    <start_date>20180101</start_date>
-    <end_date>20231231</end_date>
-    <!--IRIDE Area of Interest (BRN = Brennero)-->
-    <aoi>BRN</aoi>
-    <!-- GSP Bounding Box - Optional -->
-    <!--<bbox>minx, miny, maxx, maxy</bbox>-->
+    <start_date>20190125</start_date>
+    <end_date>20240311</end_date>
     <!-- GSP Perimeter/Envelope -->
-    <!--Note: Coordinate values in this example do not represent the actual GSP 
-    location but are used here for illustration purposes. 
+    <!--Note: Coordinate values in this example do not represent the actual GSP
+    location but are used here for illustration purposes.
     This element can be included as either a POLYGON or a  Polygone GeoJSON object-->
-    <bbox>11.637880417763027 46.59444779971044 11.772074421687002 46.99352129068873</bbox>
-	<geometry>{'type': 'Polygon', 'coordinates': [[(11.637880417763027, 46.59444779971044),
-        (11.772074421687002, 46.59444779971044), (11.772074421687002, 46.99352129068873),
-        (11.637880417763027, 46.99352129068873), (11.637880417763027, 46.59444779971044)]]}</geometry>
+    <geometry>POLYGON ((4790473 2108886, 4815234 2113072, 4820364 2113870, 4823602 2113493, 4824748 2110795, 4826438 2105712, 4823451 2083234, 4818605 2076716, 4818385 2076480, 4817859 2076333, 4814059 2076019, 4793482 2078457, 4787118 2101254, 4788176 2107099, 4788525 2108344, 4790473 2108886))</geometry>
     <!--Coordinate Reference System-->
-    <crs>EPSG:4326</crs>
+    <crs>EPSG:3035</crs>
 
     <!--Sequence Input Products Used to Generate the GSP-->
     <!--Include EO and NON-EO Data as reported in TD3 -->
     <dataset>
-        <!--DEM used for geocoding-->
         <dem>
             <!--Input ID from TD3-->
             <input_id>S3-NEO-I01</input_id>
@@ -47,23 +43,16 @@
               e Vulcanologia (INGV). https://doi.org/10.13127/tinitaly/1.1."
             </description>
         </dem>
-
+        <gnss>
+          <version>2023.0</version>
+        </gnss>
         <gsp>
-             <!--Geospatial Product ID from TD3-->
             <gsp_id>S3-01-CSM-02</gsp_id>
-              <!--GSP file Name-->
-            <product_id>ISS_S301CSM02_20180101_20221231_BRND_01</product_id>
+            <product_id>ISS_S301CSM02_20190125_20240402_220MTIA_01</product_id>
         </gsp>
-
         <gsp>
-            <!--Geospatial Product ID from TD3-->
             <gsp_id>S3-01-CSM-02</gsp_id>
-            <!--GSP file Name-->
-            <product_id>ISS_S301SNT02_20180105_20221228_BRNA_01</product_id>
+            <product_id>ISS_S301CSM02_20190114_20240314_182MTID_01</product_id>
         </gsp>
-
-        <!--Other Input Products Used to Generate the GSP-->
-        ...
     </dataset>
-
 </GSP>
