@@ -8,7 +8,7 @@ Utility functions to work with geospatial data.
 from pathlib import Path
 import logging
 import zipfile
-from typing import Optional, List
+from typing import Optional
 import fsspec
 import geopandas as gpd
 import pandas as pd
@@ -37,8 +37,7 @@ def read_dset_from_zip(zip_path: Path, **kwargs) -> gpd.GeoDataFrame:
         with fsspec.open("zip://*.shp::" + zip_path.as_posix()) as of:
             return read_as_geodataframe(of, **kwargs)
     elif zip_path.with_suffix(".parquet").name in zip_names:
-        with (fsspec.open("zip://*.parquet::"
-                          + zip_path.as_posix()) as of):
+        with fsspec.open("zip://*.parquet::" + zip_path.as_posix()) as of:
             return gpd.read_parquet(of)
     else:
         raise NotImplementedError("ZIP file must contain a CSV or SHP file")
