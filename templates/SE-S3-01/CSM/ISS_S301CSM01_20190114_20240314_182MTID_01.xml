@@ -15,11 +15,11 @@
     <!--Track ID-->
     <track_id>182</track_id>
     <!--Sensor Mode-->
-    <smode_id>H4-01</smode_id>
+    <smode>H4-01</smode>
     <!--Polarization-->
-    <polarization_id>HH</polarization_id>
+    <polarization>HH</polarization>
     <!--IRIDE Area of Interest (PSTD = Pistoia Descending)-->
-    <aoi_id>MTID</aoi_id>
+    <aoi>MTID</aoi>
     <!--Data Provider: (eGeos, Planetek, TREA, Nhazca)-->
     <provider>Planetek</provider>
     <!--Production Date yyyymmd-->

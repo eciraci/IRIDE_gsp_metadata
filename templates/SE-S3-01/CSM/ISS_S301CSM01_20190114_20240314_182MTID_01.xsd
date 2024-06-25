@@ -1,76 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
-    <xs:element name="FRAME">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="schema">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="gsp_id"/>
-                <xs:element ref="product_id"/>
-                <xs:element ref="description"/>
-                <xs:element ref="sensor_id"/>
-                <xs:element ref="amode"/>
-                <xs:element ref="track_id"/>
-                <xs:element ref="smode_id"/>
-                <xs:element ref="polarization_id"/>
-                <xs:element ref="aoi_id"/>
-                <xs:element ref="provider"/>
-                <xs:element ref="production_date"/>
-                <xs:element ref="start_date"/>
-                <xs:element ref="end_date"/>
-                <xs:element ref="geometry"/>
-                <xs:element ref="crs"/>
-                <xs:element ref="dataset"/>
+                <xs:element maxOccurs="unbounded" ref="xs:element"/>
+            </xs:sequence>
+            <xs:attribute name="elementFormDefault" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="element">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" ref="xs:complexType"/>
+            </xs:sequence>
+            <xs:attribute name="maxOccurs" type="xs:NCName"/>
+            <xs:attribute name="name" type="xs:NCName"/>
+            <xs:attribute name="ref" type="xs:NCName"/>
+            <xs:attribute name="type" type="xs:NMTOKEN"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="complexType">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="xs:sequence"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:element name="gsp_id" type="xs:NCName"/>
-    <xs:element name="sensor_id" type="xs:NCName"/>
-    <xs:element name="amode" type="xs:string"/>
-    <xs:element name="track_id" type="xs:integer"/>
-    <xs:element name="smode_id" type="xs:NCName"/>
-    <xs:element name="polarization_id" type="xs:NCName"/>
-    <xs:element name="aoi_id" type="xs:NCName"/>
-    <xs:element name="provider" type="xs:NCName"/>
-    <xs:element name="production_date" type="xs:integer"/>
-    <xs:element name="start_date" type="xs:integer"/>
-    <xs:element name="end_date" type="xs:integer"/>
-    <xs:element name="geometry" type="xs:string"/>
-    <xs:element name="crs" type="xs:NMTOKEN"/>
-    <xs:element name="dataset">
+    <xs:element name="sequence">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="dem"/>
-                <xs:element ref="reference"/>
-                <xs:element maxOccurs="unbounded" ref="image"/>
+                <xs:element maxOccurs="unbounded" ref="xs:element"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:element name="dem">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element ref="input_id"/>
-                <xs:element ref="version"/>
-                <xs:element ref="description"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="input_id" type="xs:NCName"/>
-    <xs:element name="version" type="xs:NCName"/>
-    <xs:element name="reference">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element ref="image"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="product_id" type="xs:string"/>
-    <xs:element name="description" type="xs:string"/>
-    <xs:element name="image">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element ref="orbit_type"/>
-                <xs:element ref="product_id"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="orbit_type" type="xs:NCName"/>
 </xs:schema>
