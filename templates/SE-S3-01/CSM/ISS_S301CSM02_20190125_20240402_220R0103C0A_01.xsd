@@ -13,7 +13,7 @@
                 <xs:element ref="track_id"/>
                 <xs:element ref="row"/>
                 <xs:element ref="col"/>
-                <xs:element ref="aoi"/>
+                <xs:element ref="aoi_id"/>
                 <xs:element ref="provider"/>
                 <xs:element ref="production_date"/>
                 <xs:element ref="start_date"/>
@@ -32,7 +32,7 @@
     <xs:element name="track_id" type="xs:integer"/>
     <xs:element name="row" type="xs:integer"/>
     <xs:element name="col" type="xs:integer"/>
-    <xs:element name="aoi" type="xs:NCName"/>
+    <xs:element name="aoi_id" type="xs:NCName"/>
     <xs:element name="provider" type="xs:NCName"/>
     <xs:element name="production_date" type="xs:integer"/>
     <xs:element name="start_date" type="xs:integer"/>

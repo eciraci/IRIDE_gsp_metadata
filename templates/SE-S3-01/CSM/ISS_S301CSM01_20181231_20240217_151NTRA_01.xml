@@ -19,7 +19,7 @@
     <!--Polarization-->
     <polarization>HH</polarization>
     <!--IRIDE Area of Interest (PSTD = Pistoia Descending)-->
-    <aoi>NTRA</aoi>
+    <aoi_id>NTRA</aoi_id>
     <!--Data Provider: (eGeos, Planetek, TREA, Nhazca)-->
     <provider>Planetek</provider>
     <!--Production Date yyyymmd-->
