@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
-    <xs:element name="FRAME">
+    <xs:element name="CELL">
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="gsp_id"/>
                 <xs:element ref="product_id"/>
                 <xs:element ref="description"/>
                 <xs:element ref="sensor_id"/>
+                <xs:element ref="amode"/>
                 <xs:element ref="smode"/>
+                <xs:element ref="polarization_id"/>
                 <xs:element ref="track_id"/>
-                <xs:element ref="polarization"/>
+                <xs:element ref="row"/>
+                <xs:element ref="col"/>
                 <xs:element ref="aoi_id"/>
                 <xs:element ref="direction"/>
                 <xs:element ref="provider"/>
@@ -24,9 +27,12 @@
     </xs:element>
     <xs:element name="gsp_id" type="xs:NCName"/>
     <xs:element name="sensor_id" type="xs:NCName"/>
+    <xs:element name="amode" type="xs:string"/>
     <xs:element name="smode" type="xs:NCName"/>
+    <xs:element name="polarization_id" type="xs:NCName"/>
     <xs:element name="track_id" type="xs:integer"/>
-    <xs:element name="polarization" type="xs:NCName"/>
+    <xs:element name="row" type="xs:integer"/>
+    <xs:element name="col" type="xs:integer"/>
     <xs:element name="aoi_id" type="xs:NCName"/>
     <xs:element name="direction" type="xs:NCName"/>
     <xs:element name="provider" type="xs:NCName"/>

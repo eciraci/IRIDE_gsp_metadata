@@ -11,13 +11,15 @@
     <!--Satellite [CSM, SNT, SAO]-->
     <sensor_id>CSM</sensor_id>
     <!--Acquisition Mode-->
-    <smode_id>H4-05</smode_id>
+    <smode>H4-05</smode>
     <!--Track ID-->
     <track_id>151</track_id>
     <!--Polarization-->
-    <polarization_id>HH</polarization_id>
-    <!--IRIDE Area of Interest (PSTD = Pistoia Descending)-->
-    <aoi_id>NTRA</aoi_id>
+    <polarization>HH</polarization>
+    <!--IRIDE Area of Interest (NTR: Nocera Terinese)-->
+    <aoi_id>NTR</aoi_id>
+    <!--Direction A/D/E/V-->
+	<direction>A</direction>
     <!--Data Provider: (eGeos, Planetek, TREA, Nhazca)-->
     <provider>Planetek</provider>
     <!--Production Date yyyymmd-->

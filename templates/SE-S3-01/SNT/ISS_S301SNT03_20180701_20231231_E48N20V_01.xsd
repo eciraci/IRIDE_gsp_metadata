@@ -11,6 +11,7 @@
                 <xs:element ref="production_date"/>
                 <xs:element ref="start_date"/>
                 <xs:element ref="end_date"/>
+                <xs:element ref="direction"/>
                 <xs:element ref="ew_coords"/>
                 <xs:element ref="ns_coords"/>
                 <xs:element ref="geometry"/>
@@ -24,6 +25,7 @@
     <xs:element name="production_date" type="xs:integer"/>
     <xs:element name="start_date" type="xs:integer"/>
     <xs:element name="end_date" type="xs:integer"/>
+    <xs:element name="direction" type="xs:NCName"/>
     <xs:element name="ew_coords" type="xs:integer"/>
     <xs:element name="ns_coords" type="xs:integer"/>
     <xs:element name="geometry" type="xs:string"/>

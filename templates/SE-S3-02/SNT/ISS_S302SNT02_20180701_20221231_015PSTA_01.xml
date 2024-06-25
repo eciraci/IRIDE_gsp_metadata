@@ -13,8 +13,10 @@
     <sensor_id>SNT</sensor_id>
     <!--CSM Satellite Track-->
     <track_id>015</track_id>
-    <!--IRIDE Area of Interest (PSTD = Pistoia Ascending)-->
-    <aoi_id>PSTA</aoi_id>
+    <!--IRIDE Area of Interest (PST = Pistoia)-->
+    <aoi_id>PST</aoi_id>
+    <!--Direction A/D/E/V-->
+	<direction>A</direction>
     <!--Data Provider: (eGeos, Planetek, TREA, Nhazca)-->
     <provider>TREA</provider>
     <!--Production Date yyyymmdd-->

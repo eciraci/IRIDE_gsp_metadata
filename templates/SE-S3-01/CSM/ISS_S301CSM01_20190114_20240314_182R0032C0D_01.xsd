@@ -8,12 +8,13 @@
                 <xs:element ref="description"/>
                 <xs:element ref="sensor_id"/>
                 <xs:element ref="amode"/>
-                <xs:element ref="smode_id"/>
-                <xs:element ref="polarization_id"/>
+                <xs:element ref="smode"/>
+                <xs:element ref="polarization"/>
                 <xs:element ref="track_id"/>
                 <xs:element ref="row"/>
                 <xs:element ref="col"/>
                 <xs:element ref="aoi_id"/>
+                <xs:element ref="direction"/>
                 <xs:element ref="provider"/>
                 <xs:element ref="production_date"/>
                 <xs:element ref="start_date"/>
@@ -27,12 +28,13 @@
     <xs:element name="gsp_id" type="xs:NCName"/>
     <xs:element name="sensor_id" type="xs:NCName"/>
     <xs:element name="amode" type="xs:string"/>
-    <xs:element name="smode_id" type="xs:NCName"/>
-    <xs:element name="polarization_id" type="xs:NCName"/>
+    <xs:element name="smode" type="xs:NCName"/>
+    <xs:element name="polarization" type="xs:NCName"/>
     <xs:element name="track_id" type="xs:integer"/>
     <xs:element name="row" type="xs:integer"/>
     <xs:element name="col" type="xs:integer"/>
     <xs:element name="aoi_id" type="xs:NCName"/>
+    <xs:element name="direction" type="xs:NCName"/>
     <xs:element name="provider" type="xs:NCName"/>
     <xs:element name="production_date" type="xs:integer"/>
     <xs:element name="start_date" type="xs:integer"/>

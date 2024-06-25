@@ -17,8 +17,10 @@
     <!--Reference Period Start and End Date yyyymmdd-->
     <start_date>20190125</start_date>
     <end_date>20240311</end_date>
-    <!--IRIDE Area of Interest (PST = Pistoia)-->
-    <aoi>MTI</aoi>
+    <!--IRIDE Area of Interest (MTI = Mattinata)-->
+    <aoi_id>MTI</aoi_id>
+    <!--Direction A/D/E/V-->
+	<direction>V</direction>
     <!--GSP Bounding Box - Optional -->
     <bbox>10.6205870026540996, 43.7213142073969010,
         11.2217260147361007, 44.1745231586271032</bbox>

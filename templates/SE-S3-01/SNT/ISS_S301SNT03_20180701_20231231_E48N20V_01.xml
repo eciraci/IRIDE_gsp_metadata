@@ -17,6 +17,8 @@
     <!--Reference Period Start and End Date yyyymmdd-->
     <start_date>20180701</start_date>
     <end_date>20231231</end_date>
+    <!--Direction A/D/E/V-->
+	<direction>V</direction>
     <!--East-West, North-South coordinates of
     the lower-left corner of the tile in EPSG:3035-->
     <ew_coords>4300000</ew_coords>
