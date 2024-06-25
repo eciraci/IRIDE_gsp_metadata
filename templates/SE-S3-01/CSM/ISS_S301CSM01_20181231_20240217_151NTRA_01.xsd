@@ -12,6 +12,7 @@
                 <xs:element ref="smode"/>
                 <xs:element ref="polarization"/>
                 <xs:element ref="aoi_id"/>
+                <xs:element ref="direction"/>
                 <xs:element ref="provider"/>
                 <xs:element ref="production_date"/>
                 <xs:element ref="start_date"/>
@@ -29,6 +30,7 @@
     <xs:element name="smode" type="xs:NCName"/>
     <xs:element name="polarization" type="xs:NCName"/>
     <xs:element name="aoi_id" type="xs:NCName"/>
+    <xs:element name="direction" type="xs:NCName"/>
     <xs:element name="provider" type="xs:NCName"/>
     <xs:element name="production_date" type="xs:integer"/>
     <xs:element name="start_date" type="xs:integer"/>

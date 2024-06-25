@@ -17,10 +17,10 @@
 	<track>044</track>
 	<!--Polarization-->
 	<polarization>VV</polarization>
-	<!--Orbit Direction-->
-	<direction>A</direction>
 	<!--Area of Interest-->
-	<region>Molise</region>
+	<aoi_id>Molise</aoi_id>
+	<!--Direction A/D-->
+	<direction>A</direction>
 	<!--Data Provider-->
 	<provider>eGeos</provider>
 	<!--Production Data-->

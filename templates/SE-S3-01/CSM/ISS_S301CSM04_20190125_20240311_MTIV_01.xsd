@@ -12,6 +12,7 @@
                 <xs:element ref="start_date"/>
                 <xs:element ref="end_date"/>
                 <xs:element ref="aoi_id"/>
+                <xs:element ref="direction"/>
                 <xs:element ref="bbox"/>
                 <xs:element ref="geometry"/>
                 <xs:element ref="crs"/>
@@ -25,6 +26,7 @@
     <xs:element name="start_date" type="xs:integer"/>
     <xs:element name="end_date" type="xs:integer"/>
     <xs:element name="aoi_id" type="xs:NCName"/>
+    <xs:element name="direction" type="xs:NCName"/>
     <xs:element name="bbox" type="xs:string"/>
     <xs:element name="geometry" type="xs:string"/>
     <xs:element name="crs" type="xs:NMTOKEN"/>

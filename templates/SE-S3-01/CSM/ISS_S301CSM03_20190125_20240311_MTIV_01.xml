@@ -12,8 +12,10 @@
     <sensor_id>CSM</sensor_id>
     <!--Polarization [HH, HV, VH, VV]-->
     <polarization>HH</polarization>
-    <!--IRIDE Area of Interest (BRN = Brennero)-->
+    <!--IRIDE Area of Interest (MTI = Mattinata)-->
     <aoi_id>MTI</aoi_id>
+    <!--Direction A/D/E/V-->
+	<direction>V</direction>
     <!--Data Provider: (eGeos, Planetek, TREA, Nhazca)-->
     <provider>Planetek</provider>
     <!--Production Date yyyymmdd-->

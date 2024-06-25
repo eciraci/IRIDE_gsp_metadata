@@ -19,7 +19,9 @@
     <end_date>20231231</end_date>
 
     <!--IRIDE Area of Interest (PUG = Puglia)-->
-    <aoi>PUG</aoi>
+    <aoi_id>PUG</aoi_id>
+    <!--Direction A/D/E/V-->
+	<direction>E</direction>
     <!--Bounding Box - Mandatory for this product.-->
     <bbox>14.93, 39.78, 18.52,42.22</bbox>
     <!--Coordinate Reference System-->

@@ -21,8 +21,10 @@
     <!--CSM Satellite Track Grid Row and Column-->
     <row>0032</row>
     <col>0</col>
-    <!--IRIDE Area of Interest (PSTD = Pistoia Ascending)-->
-    <aoi_id>MTID</aoi_id>
+    <!--IRIDE Area of Interest (MTI: Mattinata)-->
+    <aoi_id>MTI</aoi_id>
+    <!--Direction A/D/E/V-->
+	<direction>D</direction>
     <!--Data Provider: (eGeos, Planetek, TREA, Nhazca)-->
     <provider>Planetek</provider>
     <!--Production Date yyyymmdd-->

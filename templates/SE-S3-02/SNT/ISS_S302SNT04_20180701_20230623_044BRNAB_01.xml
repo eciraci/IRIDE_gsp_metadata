@@ -20,7 +20,9 @@
 	<start_date>20180701</start_date>
 	<end_date>20230623</end_date>
 	<!--Area of Interest-->
-	<aoi>BRN</aoi>
+	<aoi_id>BRN</aoi_id>
+	<!--Direction A/D/E/V-->
+	<direction>A</direction>
 	<!--GSP Envelope or bounding-box-->
     <!--<bbox>minx, miny, maxx, maxy</bbox>-->
     <!--Note: Coordinate values in this example do not represent the actual GSP 

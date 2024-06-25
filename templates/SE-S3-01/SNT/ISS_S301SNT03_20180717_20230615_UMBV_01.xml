@@ -8,7 +8,9 @@
 	<production_date>20240313</production_date>
 	<start_date>20180717</start_date>
 	<end_date>20230615</end_date>
-	<aoi>UMB</aoi>
+	<aoi_id>UMB</aoi_id>
+	<!--Direction A/D/E/V-->
+	<direction>V</direction>
 	<bbox>4477650.0, 2144150.0, 4588650.0, 2280450.0</bbox>
 	<crs>EPSG:3035</crs>
 	<dataset>
