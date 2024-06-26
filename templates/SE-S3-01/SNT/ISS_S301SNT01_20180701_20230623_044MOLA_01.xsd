@@ -17,7 +17,7 @@
                 <xs:element ref="provider"/>
                 <xs:element ref="sensor_id"/>
                 <xs:element ref="start_date"/>
-                <xs:element ref="track"/>
+                <xs:element ref="track_id"/>
             </xs:choice>
         </xs:complexType>
     </xs:element>
@@ -58,7 +58,7 @@
     <xs:element name="provider" type="xs:NCName"/>
     <xs:element name="sensor_id" type="xs:NCName"/>
     <xs:element name="start_date" type="xs:integer"/>
-    <xs:element name="track" type="xs:integer"/>
+    <xs:element name="track_id" type="xs:integer"/>
     <xs:element name="description" type="xs:string"/>
     <xs:element name="product_id" type="xs:string"/>
     <xs:element name="gsp_id" type="xs:NCName"/>

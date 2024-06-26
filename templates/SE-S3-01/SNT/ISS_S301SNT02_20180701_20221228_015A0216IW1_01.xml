@@ -13,7 +13,7 @@
     <!--Sentinel track and burst identifier-->
     <burst_id>015A0216IW1</burst_id>
     <!--Track Number-->
-    <track>015</track>
+    <track_id>015</track_id>
     <!--Burst Number-->
     <burst>0216</burst>
     <!--Swath-->

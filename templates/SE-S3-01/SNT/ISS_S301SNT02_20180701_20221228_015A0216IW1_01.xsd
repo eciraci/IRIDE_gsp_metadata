@@ -8,7 +8,7 @@
                 <xs:element ref="description"/>
                 <xs:element ref="sensor_id"/>
                 <xs:element ref="burst_id"/>
-                <xs:element ref="track"/>
+                <xs:element ref="track_id"/>
                 <xs:element ref="burst"/>
                 <xs:element ref="swath"/>
                 <xs:element ref="polarization"/>
@@ -26,7 +26,7 @@
     <xs:element name="gsp_id" type="xs:NCName"/>
     <xs:element name="sensor_id" type="xs:NCName"/>
     <xs:element name="burst_id" type="xs:NMTOKEN"/>
-    <xs:element name="track" type="xs:integer"/>
+    <xs:element name="track_id" type="xs:integer"/>
     <xs:element name="burst" type="xs:integer"/>
     <xs:element name="swath" type="xs:NCName"/>
     <xs:element name="polarization" type="xs:NCName"/>
