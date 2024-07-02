@@ -14,7 +14,7 @@
 	<!--Satellite [CSM, SNT, SAO]-->
 	<sensor_id>SNT</sensor_id>
 	<!--Track Number-->
-	<track>044</track>
+	<track_id>044</track_id>
 	<!--Polarization-->
 	<polarization>VV</polarization>
 	<!--Area of Interest-->
