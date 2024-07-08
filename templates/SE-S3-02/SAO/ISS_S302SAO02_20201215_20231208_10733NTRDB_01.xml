@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--ISS GSP - Distribution unit for S3-02-SNT-02--><GSP>
+   <gsp_id>S3-02-SAO-02</gsp_id>
+   <product_id>ISS_S302SAO02_20201215_20231208_10733NTRDB_01</product_id>
+   <description>"LOS velocities projected along the maximum slope direction"</description>
+   <sensor_id>SAO</sensor_id>
+   <track_id>107</track_id>
+   <frame_id>33</frame_id>
+   <aoi_id>NTR/</aoi_id>
+   <direction>D</direction>
+   <provider>TREA</provider>
+   <production_date>20240501</production_date>
+   <start_date>20201215</start_date>
+   <end_date>20231208</end_date>
+   <geometry>{"type": "Polygon", "coordinates": [[[ 16.063673000000001 , 39.178131000000000 ], [ 16.307860999999999 , 39.178131000000000 ], [ 16.307860999999999 , 39.362434000000000 ], [ 16.063673000000001 , 39.362434000000000 ], [ 16.063673000000001 , 39.178131000000000 ] ]]}</geometry>
+   <crs>EPSG:4326</crs>
+   <dataset>
+      <gsp>
+         <gsp_id>S3-01-SAO-01</gsp_id>
+         <product_id>ISS_S301SAO01_20201215_20231208_10733NTRD_01</product_id>
+      </gsp>
+      <input>
+         <input_id>S3-NEO-I09</input_id>
+         <version>OpenStreetMap</version>
+         <description>"OpenStreetMap (Version 1.0). OpenStreetMap Foundation. https://doi.org/10.13127/osm/1.0."</description>
+      </input>
+   </dataset>
+   <bbox/>
+</GSP>
