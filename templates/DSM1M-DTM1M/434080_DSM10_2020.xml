@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<GSP>
+	<gsp_id>S3-HRDEM-DSM-01</gsp_id>
+	<description>High-Resolution Digital Surface Model (DSM)</description>
+	<product_id>434080_DSM10_2020</product_id>
+	<provider>eGeos</provider>
+	<production_date>15/03/2024</production_date>
+	<start_date>01/01/2020</start_date>
+	<end_date>31/12/2020</end_date>
+	<aoi>BASILICATA</aoi>
+	<bbox>15.583190729607008 41.09817629369753 15.63226987610329 41.10007934088362</bbox>
+	<geometry>POLYGON ((15.583190729607008 41.09817629369753, 15.583190729607008 41.10007934088362,
+		15.63226987610329 41.10007934088362, 15.63226987610329 41.09817629369753,
+		15.583190729607008 41.09817629369753))</geometry>
+	<crs>EPSG:7792</crs>
+	<dataset>
+		<input>
+			<input_id>S3-NEO-I20</input_id>
+			<version>ISS-LOT2-TN-0013 v1.1</version>
+			<description>OWNER: Regional Administration</description>
+		</input>
+		<input>
+			<input_id>S3-NEO-I21</input_id>
+			<version>ISS-LOT2-TN-0013 v1.1</version>
+			<description>Aerial 20cm survey data. Entire Italian territory
+				coverage (in 3 years) realized for CAP. Owner: MASE</description>
+		</input>
+		<input>
+			<input_id>S3-NEO-I22</input_id>
+			<version>ISS-LOT2-TN-0013 v1.1</version>
+			<description>Reference ground points for Aerial Triangulation of S3-NEO-121. Owner: AGEA</description>
+		</input>
+	</dataset>
+</GSP>
