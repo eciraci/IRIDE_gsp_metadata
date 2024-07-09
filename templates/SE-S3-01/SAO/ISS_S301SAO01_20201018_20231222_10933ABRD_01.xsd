@@ -8,7 +8,7 @@
                 <xs:element ref="description"/>
                 <xs:element ref="sensor_id"/>
                 <xs:element ref="track_id"/>
-                <xs:element ref="track"/>
+                <xs:element ref="frame_id"/>
                 <xs:element ref="polarization"/>
                 <xs:element ref="aoi_id"/>
                 <xs:element ref="direction"/>
@@ -19,14 +19,13 @@
                 <xs:element ref="geometry"/>
                 <xs:element ref="crs"/>
                 <xs:element ref="dataset"/>
-                <xs:element ref="region"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
     <xs:element name="gsp_id" type="xs:NCName"/>
     <xs:element name="sensor_id" type="xs:NCName"/>
     <xs:element name="track_id" type="xs:integer"/>
-    <xs:element name="track" type="xs:integer"/>
+    <xs:element name="frame_id" type="xs:integer"/>
     <xs:element name="polarization" type="xs:NCName"/>
     <xs:element name="aoi_id" type="xs:NCName"/>
     <xs:element name="direction" type="xs:NCName"/>
@@ -62,9 +61,6 @@
                 <xs:element ref="image"/>
             </xs:sequence>
         </xs:complexType>
-    </xs:element>
-    <xs:element name="region">
-        <xs:complexType/>
     </xs:element>
     <xs:element name="product_id" type="xs:string"/>
     <xs:element name="description" type="xs:string"/>
