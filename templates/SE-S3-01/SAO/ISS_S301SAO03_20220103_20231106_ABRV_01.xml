@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GSP>
+   <gsp_id>S3-01-SAO-03</gsp_id>
+   <product_id>ISS_S301SAO03_20220103_20231106_ABRV_01</product_id>
+   <description>"2D Deformation East-West and Vertical"</description>
+   <sensor_id>SAO</sensor_id>
+   <provider>TREA</provider>
+   <production_date>20240601</production_date>
+   <start_date>20220103</start_date>
+   <end_date>20231106</end_date>
+   <aoi_id>ABR</aoi_id>
+   <direction>V</direction>
+   <bbox>4571665.3, 2073481.4, 4709171.9, 2197132.7</bbox>
+   <geometry>{"type": "Polygon", "coordinates": [[[ 4571665.302886121906340 , 2073481.375305898720399 ], [ 4709171.919588845223188 , 2073481.375305898720399 ], [ 4709171.919588845223188 , 2197132.742156793363392 ], [ 4571665.302886121906340 , 2197132.742156793363392 ], [ 4571665.302886121906340 , 2073481.375305898720399 ] ]]}</geometry>
+   <crs>EPSG:3035</crs>
+   <dataset>
+      <dem>
+         <input_id>S3-NEO-I01</input_id>
+         <version>Tinitaly-10</version>
+         <description>"Tarquini S., I. Isola, M. Favalli, A. Battistini, G. Dotta (2023). TINITALY, a digital elevation model of Italy with a 10 meters cell size (Version 1.1). Istituto Nazionale di Geofisica e Vulcanologia (INGV). https://doi.org/10.13127/tinitaly/1.1."</description>
+      </dem>
+      <gsp>
+         <gsp_id>S3-01-SAO-02</gsp_id>
+         <product_id>ISS_S301SAO02_20200317_20231215_21342ABRA_01</product_id>
+      </gsp>
+      <gsp>
+         <gsp_id>S3-01-SAO-02</gsp_id>
+         <product_id>ISS_S301SAO02_20200423_20231212_21243ABRA_01</product_id>
+      </gsp>
+      <gsp>
+         <gsp_id>S3-01-SAO-02</gsp_id>
+         <product_id>ISS_S301SAO02_20201018_20231222_10931ABRD_01</product_id>
+      </gsp>
+      <gsp>
+         <gsp_id>S3-01-SAO-02</gsp_id>
+         <product_id>ISS_S301SAO02_20201018_20231222_10933ABRD_01</product_id>
+      </gsp>
+      <gsp>
+         <gsp_id>S3-01-SAO-02</gsp_id>
+         <product_id>ISS_S301SAO02_20201103_20231214_10941ABRD_01</product_id>
+      </gsp>
+      <gsp>
+         <gsp_id>S3-01-SAO-02</gsp_id>
+         <product_id>ISS_S301SAO02_20210122_20231222_10932ABRD_01</product_id>
+      </gsp>
+      <gsp>
+         <gsp_id>S3-01-SAO-02</gsp_id>
+         <product_id>ISS_S301SAO02_20210731_20231204_21232ABRA_01</product_id>
+      </gsp>
+      <gsp>
+         <gsp_id>S3-01-SAO-02</gsp_id>
+         <product_id>ISS_S301SAO02_20210731_20231204_21233ABRA_01</product_id>
+      </gsp>
+      <gsp>
+         <gsp_id>S3-01-SAO-02</gsp_id>
+         <product_id>ISS_S301SAO02_20210823_20231211_10841ABRD_01</product_id>
+      </gsp>
+   </dataset>
+</GSP>
