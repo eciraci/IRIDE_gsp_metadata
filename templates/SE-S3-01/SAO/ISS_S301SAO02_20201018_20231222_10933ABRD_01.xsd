@@ -9,11 +9,9 @@
                 <xs:element ref="sensor_id"/>
                 <xs:element ref="track_id"/>
                 <xs:element ref="frame_id"/>
-                <xs:element ref="amode"/>
                 <xs:element ref="polarization"/>
-                <xs:element ref="direction"/>
-                <xs:element ref="plevel"/>
                 <xs:element ref="aoi_id"/>
+                <xs:element ref="direction"/>
                 <xs:element ref="provider"/>
                 <xs:element ref="production_date"/>
                 <xs:element ref="start_date"/>
@@ -25,14 +23,13 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    <xs:element name="gsp_id" type="xs:NCName"/>
     <xs:element name="sensor_id" type="xs:NCName"/>
     <xs:element name="track_id" type="xs:integer"/>
     <xs:element name="frame_id" type="xs:integer"/>
-    <xs:element name="amode" type="xs:string"/>
     <xs:element name="polarization" type="xs:NCName"/>
-    <xs:element name="direction" type="xs:NCName"/>
-    <xs:element name="plevel" type="xs:string"/>
     <xs:element name="aoi_id" type="xs:NCName"/>
+    <xs:element name="direction" type="xs:NCName"/>
     <xs:element name="provider" type="xs:NCName"/>
     <xs:element name="production_date" type="xs:integer"/>
     <xs:element name="start_date" type="xs:integer"/>
@@ -44,27 +41,22 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="dem"/>
-                <xs:element ref="gnss"/>
                 <xs:element ref="reference"/>
-                <xs:element ref="image"/>
-                <xs:element maxOccurs="unbounded" ref="gsp"/>
+                <xs:element maxOccurs="unbounded" ref="image"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
     <xs:element name="dem">
         <xs:complexType>
-            <xs:complexContent>
-                <xs:extension base="input_id">
-                    <xs:sequence>
-                        <xs:element ref="version"/>
-                        <xs:element ref="description"/>
-                    </xs:sequence>
-                </xs:extension>
-            </xs:complexContent>
+            <xs:sequence>
+                <xs:element ref="input_id"/>
+                <xs:element ref="version"/>
+                <xs:element ref="description"/>
+            </xs:sequence>
         </xs:complexType>
     </xs:element>
+    <xs:element name="input_id" type="xs:NCName"/>
     <xs:element name="version" type="xs:NCName"/>
-    <xs:element name="gnss" type="input_id"/>
     <xs:element name="reference">
         <xs:complexType>
             <xs:sequence>
@@ -72,23 +64,8 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:element name="gsp">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element ref="gsp_id"/>
-                <xs:element ref="product_id"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="gsp_id" type="xs:string"/>
     <xs:element name="product_id" type="xs:string"/>
     <xs:element name="description" type="xs:string"/>
-    <xs:complexType name="input_id">
-        <xs:sequence>
-            <xs:element ref="input_id"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:element name="input_id" type="xs:NCName"/>
     <xs:element name="image">
         <xs:complexType>
             <xs:sequence>
