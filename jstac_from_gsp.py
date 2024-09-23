@@ -302,11 +302,11 @@ def main() -> None:
                        meta_dict.get('aoi_id'))['aoi_name']
 
     collection_title = gsp_description(gsp_id)         # - Collection Title
-    if gsp_ext in ['shp', 'csv']:
+    if gsp_ext in ["S3-HRDEM-DSM-01", "S3-HRDEM-DTM-01"]:
+        # - DSM and DTM do not need sensor information
         s_info = return_sensor_info(meta_dict['sensor_id'])
     else:
-        # - Raster Data - No sensor info needed
-        s_info = ''
+        s_info = return_sensor_info(meta_dict['sensor_id'])
 
     # - Geospatial Product Short Description
     collection_s_descr = collection_title
@@ -404,6 +404,7 @@ def main() -> None:
         = end_date.replace(tzinfo=timezone.utc).isoformat()
 
     if gsp_id not in ["S3-HRDEM-DSM-01", "S3-HRDEM-DTM-01"]:
+        print(s_info["constellation"])
         item.properties["constellation"] = s_info["constellation"]
         item.properties["platform"] = s_info["sensor"]
         item.properties["license"] = "proprietary"
@@ -415,7 +416,7 @@ def main() -> None:
             = [Polarization(x) for x in s_info["polarization"]]
         # TODO: Need to updated this portion of the code when including
         #      the other SAR sensors. In any case, the attributes included
-        #      in tis template extension are mandatory when using the
+        #      in this template extension are mandatory when using the
         #      SAR extension.
         item.properties["sar:instrument_mode"] = "IW"
         item.properties["sar:product_type"] = "SLC"
